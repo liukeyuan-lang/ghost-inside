@@ -21,15 +21,19 @@ func run_all(game: Node) -> void:
 		if room.get("background") == null:
 			fail_test("Corridor map art missing in export")
 			return
+		room.call("set_player_for_test", room.get("BASES")[0])
 		room.call("interact", 0)
+		room.call("set_player_for_test", room.get("BASES")[1])
 		room.call("interact", 1)
 		if room.get("phase") != 0:
 			fail_test("Q gate failed")
 			return
 		room.set("vision", true)
 		for station in [1, 2, 3, 4]:
+			room.call("set_player_for_test", room.get("BASES")[station])
 			for phase_index in range(3):
 				room.call("interact", station)
+		room.call("set_player_for_test", room.get("BASES")[6])
 		room.call("interact", 6)
 		await get_tree().process_frame
 		room = game.get("current")

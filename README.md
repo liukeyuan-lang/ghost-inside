@@ -23,3 +23,9 @@
 ## 验证
 
 `game/tests/six_scene_playthrough.gd` 覆盖完整六关与结局，并连续重开五次；`white_corridor_smoke.gd` 和 `archive_room_smoke.gd` 检查前两关的关键限制。运行记录见 `TEST_REPORT.md`。地图画面截图见 `artifacts/qa_white_corridor.png` 与 `artifacts/qa_archive_room.png`。
+
+白色走廊现在使用脚底/基座 Y 排序的 2.5D 空间：玩家可沿 X/Y 移动，终端和高节点只以基座碰撞，视觉从基座上移，背景和 HUD 固定分层。排序、碰撞、状态机和手动验收步骤见 `docs/levels/01-white-corridor-2_5d.md`。在安装 Godot 4.7.2 后可运行：
+
+```sh
+godot --headless --path game --script res://tests/white_corridor_smoke.gd
+```
