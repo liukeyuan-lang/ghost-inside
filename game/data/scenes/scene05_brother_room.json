@@ -1,0 +1,537 @@
+{
+  "schema_version": 1,
+  "schema_notes": "frequency_text 顺序固定为 [事实层, 情绪层, 期待层]。pos 为舞台区绝对像素坐标；角色 pos 为脚底中心，物件 pos 为视觉中心。记忆镜用固定视角+预制状态切换，不做实时反射（设计文档 §17.3）。",
+  "scene_id": "scene05_brother_room",
+  "tscn_target": "scene05_brother_room",
+  "title": "05 / 林远的房间",
+  "chapter_chip": {
+    "number": "D",
+    "title": "林远房间"
+  },
+  "role": "puzzle_room",
+  "content_rect": [
+    40,
+    122,
+    1200,
+    438
+  ],
+  "camera": {
+    "mode": "fixed"
+  },
+  "spawn": {
+    "pos": [
+      130,
+      500
+    ],
+    "facing": "right"
+  },
+  "walkable": [
+    {
+      "rect": [
+        100,
+        400,
+        900,
+        140
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "tag": "bg_back",
+      "band": "all",
+      "depth": "back",
+      "asset": "res://assets/scenes/scene05/bg_back.png",
+      "status": "地图平台产出，夜色卧室"
+    },
+    {
+      "tag": "bg_mid",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/scenes/scene05/bg_mid.png",
+      "status": "地图平台产出，含记忆镜"
+    },
+    {
+      "tag": "bg_front",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene05/bg_front.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_emotion",
+      "band": "emotion",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene05/overlay_emotion.png",
+      "status": "地图平台产出，含时钟与心跳表现"
+    },
+    {
+      "tag": "overlay_expectation",
+      "band": "expectation",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene05/overlay_expectation.png",
+      "status": "地图平台产出，镜中投影人生轨迹"
+    },
+    {
+      "tag": "lamp_light",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene05/lamp_light.png",
+      "status": "地图平台产出，台灯三角度光层（备选：代码旋转实现）"
+    }
+  ],
+  "band_style": {
+    "fact": {
+      "tint": [
+        0.66,
+        0.82,
+        0.86,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "emotion": {
+      "tint": [
+        0.55,
+        0.28,
+        0.3,
+        0.82
+      ],
+      "layers_visible": [
+        "overlay_emotion"
+      ]
+    },
+    "expectation": {
+      "tint": [
+        0.78,
+        0.83,
+        0.88,
+        0.86
+      ],
+      "layers_visible": [
+        "overlay_expectation"
+      ]
+    }
+  },
+  "npcs": [
+    {
+      "id": "N51",
+      "character": "林远",
+      "pos": [
+        1020,
+        450
+      ],
+      "height": 140,
+      "frozen": true,
+      "lines": [
+        "哥，我也填了医学。",
+        "因为我想像你一样。你从来没有选错过。"
+      ],
+      "note": "冻结在书桌前"
+    },
+    {
+      "id": "N52",
+      "character": "林澈",
+      "pos": [
+        930,
+        450
+      ],
+      "height": 145,
+      "frozen": true,
+      "lines": [
+        "像我什么？"
+      ],
+      "note": "冻结在门口；本场景他的回答是 7.4 秒沉默"
+    }
+  ],
+  "objects": [
+    {
+      "id": "O51",
+      "name": "专业意向表",
+      "pos": [
+        1060,
+        350
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 85,
+      "inspect_text": "已填写医学的专业意向表。填写者和理由被记忆噪点覆盖。",
+      "frequency_text": [
+        "表格只有一行填写笔迹。",
+        "笔迹下压着反复描摹的底痕。",
+        "表格上方悬浮：正确答案已锁定。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O52",
+      "name": "林远的日记",
+      "pos": [
+        300,
+        350
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "日记里夹着一张光影练习纸，标着 15 度、45 度、75 度。",
+      "frequency_text": [
+        "日记字迹与意向表不同。",
+        "夹页纸上有台灯角度的涂鸦。",
+        "日记里写着：哥哥是不会错的。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O53",
+      "name": "林澈的生日卡",
+      "pos": [
+        390,
+        350
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "林澈写给弟弟的生日卡，字迹工整。",
+      "frequency_text": [
+        "卡片由林澈亲笔书写。",
+        "落款处画了一个小星球。",
+        "卡片边角被翻看得起了毛。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O54",
+      "name": "台灯",
+      "pos": [
+        480,
+        340
+      ],
+      "size": [
+        50,
+        80
+      ],
+      "interact_radius": 85,
+      "inspect_text": "可调节角度的台灯。光影练习纸上标着三个角度。",
+      "frequency_text": [
+        "灯臂可固定在三个角度。",
+        "灯罩有烫过的痕迹。",
+        "灯座标签：护眼学习灯。"
+      ]
+    },
+    {
+      "id": "O55",
+      "name": "记忆镜",
+      "pos": [
+        700,
+        260
+      ],
+      "size": [
+        180,
+        130
+      ],
+      "interact_radius": 100,
+      "inspect_text": "镜中显示林远想象中的哥哥人生：优秀学生 → 重点高中 → 医学录取 → 优秀毕业生 → 林远 ____。",
+      "frequency_text": [
+        "镜子不是反射，是投影。",
+        "镜中林远正踩着脚印前进。",
+        "轨迹尽头写着：正确答案。"
+      ]
+    },
+    {
+      "id": "O56",
+      "name": "林澈的奖状",
+      "pos": [
+        180,
+        300
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 80,
+      "inspect_text": "优秀学生奖状，第一张。",
+      "frequency_text": [
+        "奖状真实。",
+        "领奖时他在人群里找某个人。",
+        "墙上贴了一整排。"
+      ],
+      "takeable": true,
+      "slot_group": "mirror_track",
+      "tendency": "balance"
+    },
+    {
+      "id": "O57",
+      "name": "兄弟合照",
+      "pos": [
+        240,
+        300
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 80,
+      "inspect_text": "两兄弟的合照，林远看着哥哥。",
+      "frequency_text": [
+        "合照拍摄于林远初中。",
+        "林远的手抓着林澈的袖子。",
+        "照片边框贴着标签：榜样。"
+      ],
+      "takeable": true,
+      "slot_group": "mirror_track",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O58",
+      "name": "医学院宣传册",
+      "pos": [
+        300,
+        300
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 80,
+      "inspect_text": "与档案室同一本的医学院宣传册。",
+      "frequency_text": [
+        "与场景二是同一本。",
+        "折页停在同一页。",
+        "标签：你也可以走这条路。"
+      ],
+      "takeable": true,
+      "slot_group": "mirror_track",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O59",
+      "name": "毕业照",
+      "pos": [
+        360,
+        300
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 80,
+      "inspect_text": "优秀毕业生毕业照。",
+      "frequency_text": [
+        "毕业照是最近的节点。",
+        "照片里他笑得很标准。",
+        "镜子把它当作轨迹的倒数第二步。"
+      ],
+      "takeable": true,
+      "slot_group": "mirror_track",
+      "tendency": "balance"
+    },
+    {
+      "id": "O5A",
+      "name": "候选声音 · 医学挺好的",
+      "pos": [
+        560,
+        430
+      ],
+      "size": [
+        90,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一个悬浮的声音片段。",
+      "frequency_text": [
+        "声纹比对：不来自在场任何人。",
+        "语气是劝，不是陈述。",
+        "像标准答案的回声。"
+      ],
+      "slot_group": "response_slots",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O5B",
+      "name": "候选声音 · 你应该选自己喜欢的",
+      "pos": [
+        640,
+        430
+      ],
+      "size": [
+        90,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一个悬浮的声音片段。",
+      "frequency_text": [
+        "声纹比对：不来自在场任何人。",
+        "这句话没人说出口过。",
+        "像事后补写的台词。"
+      ],
+      "slot_group": "response_slots",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O5C",
+      "name": "候选声音 · 不要学我",
+      "pos": [
+        720,
+        430
+      ],
+      "size": [
+        90,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一个悬浮的声音片段。",
+      "frequency_text": [
+        "声纹接近林澈，但当晚他没有说话。",
+        "是想象中的回答，不是真实的。",
+        "像一条未被发送的消息。"
+      ],
+      "slot_group": "response_slots",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O5D",
+      "name": "时钟",
+      "pos": [
+        860,
+        250
+      ],
+      "size": [
+        50,
+        50
+      ],
+      "interact_radius": 80,
+      "inspect_text": "房间的挂钟。",
+      "frequency_text": [
+        "挂钟走时正常。",
+        "7.4 秒里，秒针的声音格外清楚。",
+        "钟面被擦得很干净。"
+      ],
+      "tendency": "balance"
+    }
+  ],
+  "slot_groups": [
+    {
+      "id": "desk_lamp",
+      "type": "device",
+      "pos": [
+        480,
+        300
+      ],
+      "slot_size": [
+        50,
+        40
+      ],
+      "slots": 1,
+      "states": [
+        "15 度",
+        "45 度",
+        "75 度"
+      ],
+      "state_reveals": [
+        "15 度：意向表笔迹下是反复描摹的底痕，书写压力很重。",
+        "45 度：笔画结构与林澈生日卡明显不同。",
+        "75 度：被手掌遮住的签名显影——林远。"
+      ],
+      "observe_all_writes": "f51_writer",
+      "on_complete_story": "填写者：林远。林澈接触过表格，但没有留下书写痕迹。"
+    },
+    {
+      "id": "mirror_track",
+      "type": "sequence",
+      "pos": [
+        700,
+        350
+      ],
+      "slot_size": [
+        60,
+        45
+      ],
+      "slots": 4,
+      "accepts": [
+        "O56",
+        "O57",
+        "O58",
+        "O59"
+      ],
+      "correct_order": [
+        "O56",
+        "O57",
+        "O58",
+        "O59"
+      ],
+      "wrong_feedback": "镜中脚印与物件错位，投影出现噪点。请按林澈人生的顺序排列。",
+      "on_correct": "f52_mirror",
+      "on_correct_story": "镜中的林远踩着林澈的脚印前进，没有人推动他。走到医学录取时，他自己站进了脚印。意向表恢复：选择理由——因为哥哥没有选错过。"
+    },
+    {
+      "id": "response_slots",
+      "type": "exclusion",
+      "pos": [
+        640,
+        470
+      ],
+      "slot_size": [
+        50,
+        45
+      ],
+      "slots": 3,
+      "must_remove": [
+        "O5A",
+        "O5B",
+        "O5C"
+      ],
+      "requires_flags": [
+        "f52_mirror"
+      ],
+      "wrong_feedback": "该声音与记忆不符，无法通过验证。",
+      "on_correct": "f53_silence",
+      "on_complete_story": "三个候选声音全部移出。情绪层只剩：时钟走过 7.4 秒、林澈加快的心跳、林远等待的呼吸。没有语言。林澈回应：沉默，持续时间 7.4 秒。"
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit_corridor",
+      "name": "返回走廊",
+      "rect": [
+        50,
+        390,
+        46,
+        150
+      ],
+      "target": "scene01_white_corridor",
+      "condition": "always"
+    }
+  ],
+  "flags_written": [
+    "f51_writer",
+    "f52_mirror",
+    "f53_silence"
+  ],
+  "completion": {
+    "all_of": [
+      "f51_writer",
+      "f52_mirror",
+      "f53_silence"
+    ],
+    "writes": [
+      "scene05_complete"
+    ],
+    "on_complete_story": "林远：哥？你当时是怎么知道自己想当医生的？林澈：因为……父亲、老师和亲友的声音依次出现：这条路比较稳。你适合学医。以后不用担心工作。始终没有林澈自己的声音。镜中出现：如果林远选择医学是因为林澈，那么林澈选择医学，是因为谁。情绪芯片：自我意愿识别失败。"
+  },
+  "dossier_update": {
+    "首次直接询问": "无法回答",
+    "异常触发": "自我意愿识别失败"
+  },
+  "map_platform_todo": [
+    "产出夜色卧室背景、记忆镜与两张频段覆盖层",
+    "台灯三角度光层（lamp_light）或与工程侧确认用代码旋转实现",
+    "为 O51–O5D 绘制 obj sprite 并微调 pos/size",
+    "冻结双人（林远书桌前 / 林澈门口）的站位构图",
+    "微调 walkable 与 exit rect"
+  ]
+}

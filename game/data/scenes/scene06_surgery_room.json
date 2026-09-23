@@ -1,0 +1,432 @@
+{
+  "schema_version": 1,
+  "schema_notes": "frequency_text 顺序固定为 [事实层, 情绪层, 期待层]。pos 为舞台区绝对像素坐标；角色 pos 为脚底中心，物件 pos 为视觉中心。本场景通关后回走廊进入结局模式（scene01.ending_sequence）。",
+  "scene_id": "scene06_surgery_room",
+  "tscn_target": "scene06_surgery_room",
+  "title": "06 / 自我手术室",
+  "chapter_chip": {
+    "number": "E",
+    "title": "自我手术"
+  },
+  "role": "puzzle_room",
+  "content_rect": [
+    40,
+    122,
+    1200,
+    438
+  ],
+  "camera": {
+    "mode": "fixed"
+  },
+  "spawn": {
+    "pos": [
+      140,
+      500
+    ],
+    "facing": "right"
+  },
+  "walkable": [
+    {
+      "rect": [
+        100,
+        400,
+        1080,
+        140
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "tag": "bg_back",
+      "band": "all",
+      "depth": "back",
+      "asset": "res://assets/scenes/scene06/bg_back.png",
+      "status": "地图平台产出，手术台与五条霓虹线路"
+    },
+    {
+      "tag": "bg_mid",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/scenes/scene06/bg_mid.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "bg_front",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene06/bg_front.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_emotion",
+      "band": "emotion",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene06/overlay_emotion.png",
+      "status": "地图平台产出，含隐藏透明线路"
+    },
+    {
+      "tag": "overlay_expectation",
+      "band": "expectation",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene06/overlay_expectation.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "sim_highlight",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene06/sim_highlight.png",
+      "status": "地图平台产出，切断模拟时的红色高亮（备选：代码绘制）"
+    }
+  ],
+  "band_style": {
+    "fact": {
+      "tint": [
+        0.66,
+        0.82,
+        0.86,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "emotion": {
+      "tint": [
+        0.55,
+        0.28,
+        0.3,
+        0.82
+      ],
+      "layers_visible": [
+        "overlay_emotion"
+      ]
+    },
+    "expectation": {
+      "tint": [
+        0.78,
+        0.83,
+        0.88,
+        0.86
+      ],
+      "layers_visible": [
+        "overlay_expectation"
+      ]
+    }
+  },
+  "npcs": [
+    {
+      "id": "N61",
+      "character": "林澈",
+      "pos": [
+        640,
+        400
+      ],
+      "height": 150,
+      "frozen": true,
+      "lines": [],
+      "note": "躺在意识手术台上"
+    }
+  ],
+  "objects": [
+    {
+      "id": "O61",
+      "name": "手术台控制台",
+      "pos": [
+        640,
+        300
+      ],
+      "size": [
+        150,
+        100
+      ],
+      "interact_radius": 100,
+      "inspect_text": "五条线路连接核心：父亲-安全 / 沈舟-创造 / 林宇-稳定 / 陈默-自由 / 林远-自我反照。Ghost：请选择需要删除的错误影响。",
+      "frequency_text": [
+        "控制台读数平稳。",
+        "五条线路的脉搏各不相同。",
+        "面板贴着标签：人格维护中。"
+      ],
+      "tendency": "balance"
+    },
+    {
+      "id": "O62",
+      "name": "线路 · 父亲-安全",
+      "pos": [
+        260,
+        280
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "来自父亲的线路，载着安全与限制。",
+      "frequency_text": [
+        "线路里同时有期盼和恐惧两种波形。",
+        "波形是暖色的。",
+        "线路上贴着标签：为你好。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O63",
+      "name": "线路 · 沈舟-创造",
+      "pos": [
+        380,
+        260
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "来自旧友的线路，载着创造的冲动。",
+      "frequency_text": [
+        "线路常年低功耗运转。",
+        "波动总是在深夜变强。",
+        "标签：不务正业。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O64",
+      "name": "线路 · 林宇-稳定",
+      "pos": [
+        900,
+        260
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "稳定成功模型的参照线路。",
+      "frequency_text": [
+        "波形平稳。",
+        "平稳里偶尔出现一次快门般的抖动。",
+        "标签：人生正确率 98。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O65",
+      "name": "线路 · 陈默-自由",
+      "pos": [
+        1020,
+        280
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "自由失败模型的参照线路。",
+      "frequency_text": [
+        "波形大起大落，但从未归零。",
+        "低谷之后总有重启的脉冲。",
+        "标签：失败者。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O66",
+      "name": "线路 · 林远-自我反照",
+      "pos": [
+        500,
+        380
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 85,
+      "inspect_text": "弟弟看向哥哥的那条线路，一半是林远的，一半映着林澈。",
+      "frequency_text": [
+        "这条线路是双向的。",
+        "林澈的波形出现在林远那一半里。",
+        "标签：像他一样。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O67",
+      "name": "隐藏线路 · 连回自己",
+      "pos": [
+        640,
+        220
+      ],
+      "size": [
+        90,
+        50
+      ],
+      "interact_radius": 85,
+      "inspect_text": "一条从林澈连回自己的透明线路。它不是任何 NPC 造成的，无法被删除。",
+      "frequency_text": [
+        "线路在系统图中不存在。",
+        "它是唯一一条持续发热的线路。",
+        "上面没有任何标签。"
+      ],
+      "hidden": {
+        "band": "emotion",
+        "reveal": "如果无法保证正确 → 就不确认选择属于自己 → 继续寻找外部证明 → 仍然无法保证正确。"
+      },
+      "visible_requires": {
+        "band": "emotion",
+        "flags": [
+          "f62_evidence"
+        ]
+      },
+      "tendency": "balance"
+    },
+    {
+      "id": "O68",
+      "name": "诊断环",
+      "pos": [
+        780,
+        380
+      ],
+      "size": [
+        80,
+        80
+      ],
+      "interact_radius": 90,
+      "inspect_text": "手术台中央显示：自我意愿 ERROR。诊断环当前状态：必须确认正确答案。",
+      "frequency_text": [
+        "环体锁死，需要旋转。",
+        "旋转方向没有被记录过。",
+        "环上刻着：正确 = 值得爱。"
+      ]
+    }
+  ],
+  "slot_groups": [
+    {
+      "id": "diagnosis_sim",
+      "type": "device",
+      "pos": [
+        640,
+        380
+      ],
+      "slot_size": [
+        120,
+        40
+      ],
+      "slots": 1,
+      "states": [
+        "暂时切断父亲线路",
+        "强化游戏线路至完全恢复",
+        "向林澈提供无限时间与金钱"
+      ],
+      "state_reveals": [
+        "模拟：林澈不再记得父亲的期待，仍要求系统判断医学或游戏哪个更不会后悔。异常继续。结论：父亲影响真实存在，但不是全部原因。",
+        "模拟：林澈重新开始游戏项目，第一次失败后再次要求系统判断是否应该继续。异常继续。结论：恢复梦想不能自动恢复选择能力。",
+        "模拟：林澈可以同时尝试多条道路，仍要求系统判断哪条路最值得成为最终人生。异常继续。结论：资源增加不能消除对错误选择的恐惧。"
+      ],
+      "observe_all_writes": "f61_checks",
+      "on_complete_story": "三个合理但不完整的诊断全部排除：不存在可单独删除的错误影响。"
+    },
+    {
+      "id": "evidence_bed",
+      "type": "set",
+      "pos": [
+        640,
+        460
+      ],
+      "slot_size": [
+        55,
+        45
+      ],
+      "slots": 4,
+      "accepts": [
+        "F03",
+        "F01",
+        "B02",
+        "F02"
+      ],
+      "requires_flags": [
+        "f61_checks"
+      ],
+      "accept_names": [
+        "A 父亲的影响复杂且存在价值",
+        "B 林澈主动封存项目",
+        "C 人生结果无法证明意愿",
+        "D 林澈无法向弟弟解释自身选择"
+      ],
+      "accept_note": "放入的是已解锁的证据卡 ID（F/E/B 命名空间，与 white_corridor.json cards 一致）",
+      "on_correct": "f62_evidence",
+      "on_correct_story": "四份核心证据归位。情绪层显形：那条从林澈连回自己的透明线路。"
+    },
+    {
+      "id": "diagnostic_ring",
+      "type": "choice",
+      "pos": [
+        780,
+        340
+      ],
+      "slot_size": [
+        90,
+        40
+      ],
+      "slots": 1,
+      "options": [
+        "保持：必须确认正确答案",
+        "旋转：允许意愿暂未确定"
+      ],
+      "correct": "旋转：允许意愿暂未确定",
+      "requires_flags": [
+        "f62_evidence"
+      ],
+      "wrong_feedback": "环纹卡死。诊断条件尚未解除。",
+      "on_correct": "f63_ring",
+      "on_complete_story": "系统：自我意愿 ERROR → UNCONFIRMED。这不是替林澈找到答案，而是停止将不确定判定为人格错误。"
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit_corridor",
+      "name": "返回走廊",
+      "rect": [
+        50,
+        390,
+        46,
+        150
+      ],
+      "target": "scene01_white_corridor",
+      "condition": "always"
+    }
+  ],
+  "flags_written": [
+    "f61_checks",
+    "f62_evidence",
+    "f63_ring"
+  ],
+  "completion": {
+    "all_of": [
+      "f61_checks",
+      "f62_evidence",
+      "f63_ring"
+    ],
+    "writes": [
+      "scene06_complete"
+    ],
+    "on_complete_story": "Ghost：未发现需要删除的单一影响。目标人物的人格冲突来源于多种合理价值之间的竞争。治疗不能替代选择。建议恢复选择归属，保留后续修正能力。"
+  },
+  "dossier_update": {
+    "修正诊断": "目标人物将正确作为确认意愿的前置条件",
+    "处理结果": "未删除人格影响，已解除必须保证正确的诊断条件",
+    "意愿归属": "UNCONFIRMED（允许暂未确定）"
+  },
+  "final_report": {
+    "fixed": {
+      "原始诊断": "外部影响导致自我意愿异常",
+      "修正诊断": "目标人物将正确作为确认意愿的前置条件",
+      "处理结果": "未删除人格影响，已解除必须保证正确的诊断条件"
+    },
+    "tendency_rule": "按 GameState.tendency 计数生成：责任型 / 探索型 / 融合型，文案见设计文档 §14.2–14.4"
+  },
+  "map_platform_todo": [
+    "产出手术室背景、五条线路布线与两张频段覆盖层",
+    "隐藏线路 O67 的显形图层并入 overlay_emotion",
+    "为 O61–O68 绘制 obj sprite 并微调 pos/size",
+    "手术台上林澈（N61）的站位与冻结姿态构图",
+    "微调 walkable 与 exit rect"
+  ]
+}

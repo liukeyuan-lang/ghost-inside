@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PLAYTHROUGH_ROUND_1_PASS: accept
+PLAYTHROUGH_ROUND_2_PASS: revise
+PLAYTHROUGH_ROUND_3_PASS: hold
+PLAYTHROUGH_ROUND_4_PASS: accept
+PLAYTHROUGH_ROUND_5_PASS: hold
+PLAYTHROUGH_PASS: 5 complete scene journeys; accept/revise/hold; one resubmit; 60 characters; F2 reset; 3 interruptions and grey evidence recovery. Real seconds: 87.4

@@ -1,0 +1,5104 @@
+[
+  {
+    "name": "get_project_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_filesystem_tree",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Root path to scan (default: res://)",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Glob filter pattern (e.g. '*.gd', '*.tscn')",
+          "type": "string"
+        },
+        "max_depth": {
+          "description": "Maximum directory depth to scan (default: 10)",
+          "type": "number"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "search_files",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Search query (fuzzy match or glob pattern)"
+        },
+        "path": {
+          "description": "Root path to search (default: res://)",
+          "type": "string"
+        },
+        "file_type": {
+          "description": "Filter by file extension (e.g. 'gd', 'tscn')",
+          "type": "string"
+        },
+        "max_results": {
+          "description": "Maximum results to return (default: 50)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "search_in_files",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Text to search for (plain text or regex pattern)"
+        },
+        "path": {
+          "description": "Root path to search (default: res://)",
+          "type": "string"
+        },
+        "regex": {
+          "description": "Use regex matching (default: false)",
+          "type": "boolean"
+        },
+        "file_type": {
+          "description": "Filter by file extension (e.g. 'gd', 'tscn'). Default: all text files",
+          "type": "string"
+        },
+        "max_results": {
+          "description": "Maximum results to return (default: 50)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_project_settings",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "description": "Settings section prefix (e.g. 'display/window')",
+          "type": "string"
+        },
+        "key": {
+          "description": "Specific setting key (e.g. 'display/window/size/viewport_width')",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_project_setting",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Setting key (e.g. 'display/window/size/viewport_width', 'application/run/main_scene')"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Value to set. Strings are auto-parsed for Vector2, bool, int, float."
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "uid_to_project_path",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The UID string (e.g. 'uid://abc123')"
+        }
+      },
+      "required": [
+        "uid"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "project_path_to_uid",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The resource path (e.g. 'res://scenes/player.tscn')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_autoload",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Autoload name (e.g. 'GameManager', 'AudioManager')"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path to the script or scene file (e.g. 'res://scripts/autoload/game_manager.gd')"
+        }
+      },
+      "required": [
+        "name",
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "remove_autoload",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Autoload name to remove (e.g. 'GameManager')"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_scene_tree",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max_depth": {
+          "description": "Max tree depth to return (-1 for unlimited)",
+          "type": "number"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_scene_file_content",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the scene file (e.g. 'res://scenes/main.tscn')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path for the new scene (e.g. 'res://scenes/enemy.tscn')"
+        },
+        "root_type": {
+          "description": "Root node type (default: Node2D). Examples: Node2D, Node3D, Control, CharacterBody2D",
+          "type": "string"
+        },
+        "root_name": {
+          "description": "Root node name (defaults to filename)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "open_scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the scene file (e.g. 'res://scenes/main.tscn')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "delete_scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the scene file to delete"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_scene_instance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scene_path": {
+          "type": "string",
+          "description": "Path to the scene to instance (e.g. 'res://scenes/enemy.tscn')"
+        },
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "name": {
+          "description": "Custom name for the instance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scene_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "play_scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "description": "'main' (default), 'current', or a scene file path",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "stop_scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "save_scene",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Optional path to save to (defaults to current scene path)",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_scene_exports",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the scene file (e.g. 'res://scenes/enemy.tscn')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Node type — built-in (e.g. 'Sprite2D', 'Camera2D') or script class_name (e.g. 'HoverDetector', 'StationBuilder')"
+        },
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Properties to set (e.g. {\"position\": \"Vector2(100, 200)\"})",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "delete_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node to delete"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "duplicate_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node to duplicate"
+        },
+        "name": {
+          "description": "Name for the duplicate (default: original_copy)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "move_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node to move"
+        },
+        "new_parent_path": {
+          "type": "string",
+          "description": "Path to the new parent node"
+        }
+      },
+      "required": [
+        "node_path",
+        "new_parent_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "update_property",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the target node"
+        },
+        "property": {
+          "type": "string",
+          "description": "Property name (e.g. 'position', 'modulate', 'visible')"
+        },
+        "value": {
+          "description": "New value. Strings are auto-parsed: 'Vector2(10,20)', 'Color(1,0,0)', '#ff0000', etc."
+        }
+      },
+      "required": [
+        "node_path",
+        "property",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_node_properties",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node"
+        },
+        "category": {
+          "description": "Filter by property category prefix (e.g. 'transform', 'texture')",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_resource",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the target node"
+        },
+        "property": {
+          "type": "string",
+          "description": "Property to set the resource on (e.g. 'shape', 'material', 'texture')"
+        },
+        "resource_type": {
+          "type": "string",
+          "description": "Resource class name (e.g. 'RectangleShape2D', 'CircleShape2D', 'StandardMaterial3D')"
+        },
+        "resource_properties": {
+          "description": "Properties to set on the created resource",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "node_path",
+        "property",
+        "resource_type"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_anchor_preset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        },
+        "preset": {
+          "type": "string",
+          "description": "Anchor preset name: top_left, top_right, bottom_left, bottom_right, center_left, center_top, center_right, center_bottom, center, left_wide, top_wide, right_wide, bottom_wide, vcenter_wide, hcenter_wide, full_rect"
+        },
+        "keep_offsets": {
+          "description": "Keep current offsets (default: false)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "node_path",
+        "preset"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "rename_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node to rename"
+        },
+        "new_name": {
+          "type": "string",
+          "description": "New name for the node"
+        }
+      },
+      "required": [
+        "node_path",
+        "new_name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "connect_signal",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_path": {
+          "type": "string",
+          "description": "Path to the source node (emitter)"
+        },
+        "signal_name": {
+          "type": "string",
+          "description": "Signal name to connect"
+        },
+        "target_path": {
+          "type": "string",
+          "description": "Path to the target node (receiver)"
+        },
+        "method_name": {
+          "type": "string",
+          "description": "Method name on target to call"
+        }
+      },
+      "required": [
+        "source_path",
+        "signal_name",
+        "target_path",
+        "method_name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "disconnect_signal",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "source_path": {
+          "type": "string",
+          "description": "Path to the source node (emitter)"
+        },
+        "signal_name": {
+          "type": "string",
+          "description": "Signal name to disconnect"
+        },
+        "target_path": {
+          "type": "string",
+          "description": "Path to the target node (receiver)"
+        },
+        "method_name": {
+          "type": "string",
+          "description": "Method name on target"
+        }
+      },
+      "required": [
+        "source_path",
+        "signal_name",
+        "target_path",
+        "method_name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_node_groups",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_node_groups",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Desired list of group names (replaces current groups)"
+        }
+      },
+      "required": [
+        "node_path",
+        "groups"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_nodes_in_group",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string",
+          "description": "Group name to search for"
+        }
+      },
+      "required": [
+        "group"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "list_scripts",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Root path to search (default: res://)",
+          "type": "string"
+        },
+        "recursive": {
+          "description": "Search recursively (default: true)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "read_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the script (e.g. 'res://scripts/player.gd')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path for the new script (e.g. 'res://scripts/enemy_ai.gd')"
+        },
+        "content": {
+          "description": "Full script content. If empty, generates a template.",
+          "type": "string"
+        },
+        "extends": {
+          "description": "Base class (default: 'Node'). Only used for template generation.",
+          "type": "string"
+        },
+        "class_name": {
+          "description": "Class name to add. Only used for template generation.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "edit_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the script to edit"
+        },
+        "replacements": {
+          "description": "Array of search-and-replace operations",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "search": {
+                "type": "string",
+                "description": "Text to find"
+              },
+              "replace": {
+                "type": "string",
+                "description": "Replacement text"
+              },
+              "regex": {
+                "description": "Use regex for search (default: false)",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "search",
+              "replace"
+            ]
+          }
+        },
+        "content": {
+          "description": "Full replacement content (replaces entire file)",
+          "type": "string"
+        },
+        "insert_at_line": {
+          "description": "Line number to insert text at (0-indexed)",
+          "type": "number"
+        },
+        "text": {
+          "description": "Text to insert (used with insert_at_line)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "attach_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the target node"
+        },
+        "script_path": {
+          "type": "string",
+          "description": "Path to the script file (e.g. 'res://scripts/player.gd')"
+        }
+      },
+      "required": [
+        "node_path",
+        "script_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "validate_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the script to validate (e.g. 'res://scripts/player.gd')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_open_scripts",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_editor_errors",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max_lines": {
+          "description": "Maximum log lines to scan for errors (default: 50)",
+          "type": "number"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_output_log",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max_lines": {
+          "description": "Maximum number of lines to return from the end (default: 100)",
+          "type": "number"
+        },
+        "filter": {
+          "description": "Filter lines containing this substring (case-sensitive)",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_editor_screenshot",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "save_path": {
+          "description": "Optional res:// or user:// path to save the screenshot as PNG file (e.g. 'res://screenshot.png'). When provided, the image is saved to disk and the file path is returned instead of base64 data.",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_game_screenshot",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "save_path": {
+          "description": "Optional res:// or user:// path to save the screenshot as PNG file (e.g. 'res://screenshot.png'). When provided, the image is saved to disk and the file path is returned instead of base64 data.",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "execute_editor_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "GDScript code to execute. Use _mcp_print(value) to capture output. The code runs inside a run() function with access to the full editor API."
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "clear_output",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_signals",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node to inspect"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "reload_plugin",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "reload_project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "compare_screenshots",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "image_a": {
+          "type": "string",
+          "description": "First image: file path (e.g. 'user://screenshot_a.png') or base64 PNG string"
+        },
+        "image_b": {
+          "type": "string",
+          "description": "Second image: file path (e.g. 'user://screenshot_b.png') or base64 PNG string"
+        },
+        "threshold": {
+          "description": "Color difference threshold (0-255, default: 10). Pixels with max channel difference below this are considered identical.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "image_a",
+        "image_b"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_auto_dismiss",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "true to enable auto-dismiss, false to disable"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_editor_camera",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_editor_camera",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "description": "Camera world position",
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number",
+              "description": "X position"
+            },
+            "y": {
+              "type": "number",
+              "description": "Y position"
+            },
+            "z": {
+              "type": "number",
+              "description": "Z position"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "rotation_degrees": {
+          "description": "Camera rotation in degrees",
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number",
+              "description": "Pitch (degrees)"
+            },
+            "y": {
+              "type": "number",
+              "description": "Yaw (degrees)"
+            },
+            "z": {
+              "type": "number",
+              "description": "Roll (degrees)"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "look_at": {
+          "description": "Point to look at (overrides rotation_degrees if both set)",
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number",
+              "description": "Target X"
+            },
+            "y": {
+              "type": "number",
+              "description": "Target Y"
+            },
+            "z": {
+              "type": "number",
+              "description": "Target Z"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "fov": {
+          "description": "Field of view in degrees (default: 75)",
+          "type": "number"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "simulate_key",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "keycode": {
+          "type": "string",
+          "description": "Key constant (e.g. 'KEY_SPACE', 'KEY_W', 'KEY_ESCAPE')"
+        },
+        "pressed": {
+          "description": "true for press, false for release (default: true)",
+          "type": "boolean"
+        },
+        "duration": {
+          "description": "Hold duration in seconds (e.g. 1.5). Key is pressed, held for this duration, then auto-released. Cannot be used with pressed=false.",
+          "type": "number"
+        },
+        "shift": {
+          "description": "Shift modifier (default: false)",
+          "type": "boolean"
+        },
+        "ctrl": {
+          "description": "Ctrl modifier (default: false)",
+          "type": "boolean"
+        },
+        "alt": {
+          "description": "Alt modifier (default: false)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "keycode"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "simulate_mouse_click",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "description": "X position in viewport (default: 0)",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y position in viewport (default: 0)",
+          "type": "number"
+        },
+        "button": {
+          "description": "Mouse button index: 1=left, 2=right, 3=middle (default: 1)",
+          "type": "number"
+        },
+        "pressed": {
+          "description": "true for press, false for release (default: true)",
+          "type": "boolean"
+        },
+        "double_click": {
+          "description": "Double click (default: false)",
+          "type": "boolean"
+        },
+        "auto_release": {
+          "description": "Auto-send release after press so buttons fire (default: true). Set false for drag operations.",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "simulate_mouse_move",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "description": "Absolute X position in viewport (for UI interaction)",
+          "type": "number"
+        },
+        "y": {
+          "description": "Absolute Y position in viewport (for UI interaction)",
+          "type": "number"
+        },
+        "relative_x": {
+          "description": "Relative X movement in pixels. For 3D camera: negative = look left, positive = look right. ~400px ≈ 180° turn",
+          "type": "number"
+        },
+        "relative_y": {
+          "description": "Relative Y movement in pixels. For 3D camera: negative = look up, positive = look down",
+          "type": "number"
+        },
+        "button_mask": {
+          "description": "Mouse button mask to simulate drag. 1=left button held, 2=right button held, 4=middle button held. Required for drag operations like camera pan. (default: 0)",
+          "type": "number"
+        },
+        "unhandled": {
+          "description": "Force event to bypass GUI layer and go directly to _unhandled_input(). Auto-enabled when button_mask > 0. Use for camera pan/drag when UI overlays consume mouse events. (default: false)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "simulate_action",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Action name as defined in Input Map (e.g. 'jump', 'move_left')"
+        },
+        "pressed": {
+          "description": "true for press, false for release (default: true)",
+          "type": "boolean"
+        },
+        "strength": {
+          "description": "Action strength 0.0-1.0 (default: 1.0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "simulate_sequence",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Event type: 'key', 'mouse_button', 'mouse_motion', or 'action'"
+              },
+              "keycode": {
+                "description": "For 'key': key constant (e.g. 'KEY_SPACE')",
+                "type": "string"
+              },
+              "action": {
+                "description": "For 'action': action name",
+                "type": "string"
+              },
+              "button": {
+                "description": "For 'mouse_button': button index",
+                "type": "number"
+              },
+              "pressed": {
+                "description": "Press state (default: true)",
+                "type": "boolean"
+              },
+              "x": {
+                "description": "X position for mouse events",
+                "type": "number"
+              },
+              "y": {
+                "description": "Y position for mouse events",
+                "type": "number"
+              },
+              "relative_x": {
+                "description": "Relative X for mouse_motion",
+                "type": "number"
+              },
+              "relative_y": {
+                "description": "Relative Y for mouse_motion",
+                "type": "number"
+              },
+              "button_mask": {
+                "description": "Mouse button mask for mouse_motion drag: 1=left, 2=right, 4=middle",
+                "type": "number"
+              },
+              "unhandled": {
+                "description": "Bypass GUI, send directly to _unhandled_input. Auto-enabled for mouse_motion with button_mask > 0",
+                "type": "boolean"
+              },
+              "shift": {
+                "type": "boolean"
+              },
+              "ctrl": {
+                "type": "boolean"
+              },
+              "alt": {
+                "type": "boolean"
+              },
+              "strength": {
+                "type": "number"
+              },
+              "double_click": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "description": "Array of input events to send"
+        },
+        "frame_delay": {
+          "description": "Frames to wait between events (default: 1, 0 = all in one frame)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "events"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_game_scene_tree",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max_depth": {
+          "description": "Maximum tree depth (-1 for unlimited, default: -1)",
+          "type": "number"
+        },
+        "script_filter": {
+          "description": "Only include nodes whose script path contains this string (e.g. 'enemy' matches 'enemy.gd', 'enemy_drone.gd')",
+          "type": "string"
+        },
+        "type_filter": {
+          "description": "Only include nodes of this Godot class (e.g. 'CharacterBody2D', 'Area2D')",
+          "type": "string"
+        },
+        "named_only": {
+          "description": "If true, exclude nodes with auto-generated names (names starting with '@'). Default: false",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_game_node_properties",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Absolute node path in the running game (e.g. '/root/Main/Player')"
+        },
+        "properties": {
+          "description": "Specific property names to read (default: all editor-visible properties)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_game_node_property",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Absolute node path in the running game (e.g. '/root/Main/Player')"
+        },
+        "property": {
+          "type": "string",
+          "description": "Property name to set (e.g. 'position', 'speed', 'health')"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "number"
+              }
+            }
+          ],
+          "description": "Value to set. Accepts: strings with auto-parsing ('Vector2(100,200)', '#ff0000'), numbers, booleans, or JSON objects for vectors/colors ({\"x\":5,\"y\":3,\"z\":10} for Vector3, {\"x\":100,\"y\":200} for Vector2, {\"r\":1,\"g\":0,\"b\":0,\"a\":1} for Color)"
+        }
+      },
+      "required": [
+        "node_path",
+        "property",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "execute_game_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "GDScript code to execute in the running game. Use _mcp_print(value) to capture output. Code runs inside a run() function with access to the live game scene tree."
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "capture_frames",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "Number of frames to capture (1-30, default: 5)",
+          "type": "number"
+        },
+        "frame_interval": {
+          "description": "Frames to wait between captures (default: 10, i.e. ~6 captures/sec at 60fps)",
+          "type": "number"
+        },
+        "half_resolution": {
+          "description": "Halve resolution to reduce data size (default: true)",
+          "type": "boolean"
+        },
+        "node_data": {
+          "description": "Optional: capture node property data alongside each frame for debugging (position, velocity, etc.)",
+          "type": "object",
+          "properties": {
+            "node_path": {
+              "type": "string",
+              "description": "Path to a node to track (e.g. '/root/Main/Player')"
+            },
+            "properties": {
+              "description": "Property names to capture per frame (e.g. ['global_position', 'velocity'])",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "node_path",
+            "properties"
+          ]
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "record_frames",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "Number of frames to capture (1-600, default: 30)",
+          "type": "number"
+        },
+        "frame_interval": {
+          "description": "Frames to wait between captures (default: 10, i.e. ~6 captures/sec at 60fps)",
+          "type": "number"
+        },
+        "half_resolution": {
+          "description": "Halve resolution to reduce file size (default: true)",
+          "type": "boolean"
+        },
+        "node_data": {
+          "description": "Optional: capture node property data alongside each frame for debugging",
+          "type": "object",
+          "properties": {
+            "node_path": {
+              "type": "string",
+              "description": "Path to a node to track (e.g. '/root/Main/Player')"
+            },
+            "properties": {
+              "description": "Property names to capture per frame (e.g. ['global_position', 'velocity'])",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "node_path",
+            "properties"
+          ]
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "monitor_properties",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Absolute node path in the running game (e.g. '/root/Main/Player')"
+        },
+        "properties": {
+          "description": "Property names to monitor (e.g. ['position', 'velocity'])",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "frame_count": {
+          "description": "Number of samples to collect (1-600, default: 60)",
+          "type": "number"
+        },
+        "frame_interval": {
+          "description": "Frames to wait between samples (default: 1, every frame)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "properties"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "watch_signals",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Absolute node paths to watch (e.g. ['/root/Main/Player', '/root/Main/Enemy'])"
+        },
+        "signal_filter": {
+          "description": "Only watch signals containing these substrings (e.g. ['health', 'died']). Omit to watch all signals.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duration_ms": {
+          "description": "How long to watch in milliseconds (500-30000, default: 5000)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_paths"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "start_recording",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "stop_recording",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "replay_recording",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
+          "description": "Array of recorded event objects (from stop_recording output)"
+        },
+        "speed": {
+          "description": "Playback speed multiplier (default: 1.0, 2.0 = double speed)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "events"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_nodes_by_script",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "script": {
+          "type": "string",
+          "description": "Script path substring to search for (e.g. 'enemy', 'player.gd')"
+        },
+        "properties": {
+          "description": "Specific property names to include for each match (default: all editor-visible properties)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "script"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_autoload",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Autoload name (e.g. 'GameManager', 'EventBus', 'SaveManager')"
+        },
+        "properties": {
+          "description": "Specific property names to read (default: all editor-visible properties)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_ui_elements",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type_filter": {
+          "description": "Only return elements of this type (e.g. 'Button', 'Label', 'CheckBox'). Default: all types",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "click_button_by_text",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Button text to search for (e.g. 'New Game', 'Start', 'OK')"
+        },
+        "partial": {
+          "description": "Allow partial text matching (default: true). If false, requires exact match.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "wait_for_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Absolute node path to wait for (e.g. '/root/Main/Player', '/root/Dungeon')"
+        },
+        "timeout": {
+          "description": "Maximum seconds to wait (default: 5.0)",
+          "type": "number"
+        },
+        "poll_frames": {
+          "description": "Frames between each check (default: 5, i.e. ~12 checks/sec at 60fps)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_nearby_nodes",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "z": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ]
+            }
+          ],
+          "description": "Origin position: either a node_path string (e.g. '/root/Main/Player') to use that node's global_position, or an {x, y, z} coordinate object"
+        },
+        "radius": {
+          "description": "Search radius in world units (default: 20.0)",
+          "type": "number"
+        },
+        "type_filter": {
+          "description": "Only include nodes of this Godot class (e.g. 'Area3D', 'CharacterBody3D')",
+          "type": "string"
+        },
+        "group_filter": {
+          "description": "Only include nodes in this group (e.g. 'enemies', 'collectibles')",
+          "type": "string"
+        },
+        "max_results": {
+          "description": "Maximum number of results to return (default: 10)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "position"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "navigate_to",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "z": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y",
+                "z"
+              ]
+            }
+          ],
+          "description": "Target: either a node_path string (e.g. '/root/Main/Crystal') or an {x, y, z} coordinate object"
+        },
+        "player_path": {
+          "description": "Player node path (default: '/root/Main/Player')",
+          "type": "string"
+        },
+        "camera_path": {
+          "description": "Camera node path (default: auto-detect active Camera3D)",
+          "type": "string"
+        },
+        "move_speed": {
+          "description": "Player movement speed in units/sec for duration estimation (default: 5.0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "move_to",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "z": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y",
+                "z"
+              ]
+            }
+          ],
+          "description": "Target: either a node_path string (e.g. '/root/Main/Crystal') or an {x, y, z} coordinate object"
+        },
+        "player_path": {
+          "description": "Player node path (default: '/root/Main/Player')",
+          "type": "string"
+        },
+        "camera_path": {
+          "description": "Camera pivot node path (default: auto-detect SpringArm3D child of player, or active Camera3D parent)",
+          "type": "string"
+        },
+        "arrival_radius": {
+          "description": "Stop when this close to target in world units (default: 1.5)",
+          "type": "number"
+        },
+        "timeout": {
+          "description": "Maximum seconds before giving up (default: 15.0)",
+          "type": "number"
+        },
+        "run": {
+          "description": "Hold Shift for running speed (default: false)",
+          "type": "boolean"
+        },
+        "look_at_target": {
+          "description": "Rotate camera toward target while moving (default: true). Set false to walk forward without turning.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "batch_get_properties",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Absolute node path (e.g. '/root/Main/Player')"
+              },
+              "properties": {
+                "description": "Specific properties to read (default: all editor-visible)",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "path"
+            ]
+          },
+          "description": "Array of nodes to query"
+        }
+      },
+      "required": [
+        "nodes"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_input_actions",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "description": "Filter action names containing this substring",
+          "type": "string"
+        },
+        "include_builtin": {
+          "description": "Include built-in ui_* actions (default: false)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_input_action",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Action name (e.g. 'move_left', 'jump', 'attack')"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "key",
+                  "mouse_button",
+                  "joypad_button",
+                  "joypad_motion"
+                ],
+                "description": "Event type"
+              },
+              "keycode": {
+                "description": "Key name for 'key' type (e.g. 'W', 'Space', 'Escape', 'Shift')",
+                "type": "string"
+              },
+              "physical_keycode": {
+                "description": "Physical key name for 'key' type",
+                "type": "string"
+              },
+              "ctrl": {
+                "description": "Ctrl modifier for 'key' type",
+                "type": "boolean"
+              },
+              "shift": {
+                "description": "Shift modifier for 'key' type",
+                "type": "boolean"
+              },
+              "alt": {
+                "description": "Alt modifier for 'key' type",
+                "type": "boolean"
+              },
+              "meta": {
+                "description": "Meta/Cmd modifier for 'key' type",
+                "type": "boolean"
+              },
+              "button_index": {
+                "description": "Button index for mouse/joypad button types",
+                "type": "number"
+              },
+              "axis": {
+                "description": "Axis index for joypad_motion type",
+                "type": "number"
+              },
+              "axis_value": {
+                "description": "Axis value (-1.0 or 1.0) for joypad_motion type",
+                "type": "number"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "description": "Array of input event bindings"
+        },
+        "deadzone": {
+          "description": "Deadzone for analog inputs (default: 0.5)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "action",
+        "events"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_collision",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the parent physics body or area node (e.g. CharacterBody2D, StaticBody3D, Area2D)"
+        },
+        "shape": {
+          "type": "string",
+          "description": "Shape type: 'rectangle'/'rect', 'circle', 'capsule', 'segment' (2D only), 'cylinder' (3D only), 'custom'/'convex'. For 3D: 'box'/'sphere' also work."
+        },
+        "width": {
+          "description": "Width for rectangle/box shape (default: 32 for 2D, 1 for 3D)",
+          "type": "number"
+        },
+        "height": {
+          "description": "Height for rectangle/box/capsule/cylinder shape",
+          "type": "number"
+        },
+        "depth": {
+          "description": "Depth for 3D box shape (default: 1)",
+          "type": "number"
+        },
+        "radius": {
+          "description": "Radius for circle/sphere/capsule/cylinder shape",
+          "type": "number"
+        },
+        "ax": {
+          "description": "Segment start X (2D segment only)",
+          "type": "number"
+        },
+        "ay": {
+          "description": "Segment start Y (2D segment only)",
+          "type": "number"
+        },
+        "bx": {
+          "description": "Segment end X (2D segment only)",
+          "type": "number"
+        },
+        "by": {
+          "description": "Segment end Y (2D segment only)",
+          "type": "number"
+        },
+        "points": {
+          "description": "Convex polygon points as [[x,y],...] for 2D or [[x,y,z],...] for 3D",
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "disabled": {
+          "description": "Create the collision shape disabled (default: false)",
+          "type": "boolean"
+        },
+        "one_way_collision": {
+          "description": "Enable one-way collision (2D only, default: false)",
+          "type": "boolean"
+        },
+        "dimension": {
+          "description": "Force '2d' or '3d' if auto-detection fails",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path",
+        "shape"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_physics_layers",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node with collision layers"
+        },
+        "collision_layer": {
+          "description": "Collision layer: bitmask integer or array of layer numbers [1,3,5]",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          ]
+        },
+        "collision_mask": {
+          "description": "Collision mask: bitmask integer or array of layer numbers [1,2,4]",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_physics_layers",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node with collision layers"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_raycast",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the parent node"
+        },
+        "name": {
+          "description": "Name for the raycast node (default: 'RayCast')",
+          "type": "string"
+        },
+        "target_x": {
+          "description": "Target position X (default: 0)",
+          "type": "number"
+        },
+        "target_y": {
+          "description": "Target position Y (default: 50 for 2D, -1 for 3D)",
+          "type": "number"
+        },
+        "target_z": {
+          "description": "Target position Z (3D only, default: 0)",
+          "type": "number"
+        },
+        "collision_mask": {
+          "description": "Collision mask bitmask (default: 1)",
+          "type": "number"
+        },
+        "enabled": {
+          "description": "Enable the raycast (default: true)",
+          "type": "boolean"
+        },
+        "collide_with_areas": {
+          "description": "Collide with Area nodes (default: false)",
+          "type": "boolean"
+        },
+        "collide_with_bodies": {
+          "description": "Collide with physics bodies (default: true)",
+          "type": "boolean"
+        },
+        "hit_from_inside": {
+          "description": "Detect hits from inside shapes (default: false)",
+          "type": "boolean"
+        },
+        "dimension": {
+          "description": "Force '2d' or '3d' if auto-detection fails",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_physics_body",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the physics body node"
+        },
+        "floor_stop_on_slope": {
+          "description": "CharacterBody: stop on slopes when not moving",
+          "type": "boolean"
+        },
+        "floor_max_angle": {
+          "description": "CharacterBody: maximum floor angle in radians (default ~0.785 = 45 degrees)",
+          "type": "number"
+        },
+        "floor_snap_length": {
+          "description": "CharacterBody: floor snap distance for sticking to the ground",
+          "type": "number"
+        },
+        "wall_min_slide_angle": {
+          "description": "CharacterBody: minimum angle for wall sliding in radians",
+          "type": "number"
+        },
+        "motion_mode": {
+          "description": "CharacterBody: 'grounded' or 'floating'",
+          "type": "string"
+        },
+        "max_slides": {
+          "description": "CharacterBody: maximum slide iterations (default: 6)",
+          "type": "number"
+        },
+        "slide_on_ceiling": {
+          "description": "CharacterBody: allow sliding on ceiling",
+          "type": "boolean"
+        },
+        "mass": {
+          "description": "RigidBody: mass in kg (default: 1)",
+          "type": "number"
+        },
+        "gravity_scale": {
+          "description": "RigidBody: gravity multiplier (default: 1, 0 = no gravity)",
+          "type": "number"
+        },
+        "linear_damp": {
+          "description": "RigidBody: linear velocity damping",
+          "type": "number"
+        },
+        "angular_damp": {
+          "description": "RigidBody: angular velocity damping",
+          "type": "number"
+        },
+        "freeze": {
+          "description": "RigidBody: freeze the body (stop physics simulation)",
+          "type": "boolean"
+        },
+        "freeze_mode": {
+          "description": "RigidBody: 'static' or 'kinematic' freeze behavior",
+          "type": "string"
+        },
+        "continuous_cd": {
+          "description": "RigidBody: continuous collision detection. 2D: 'disabled'/'cast_ray'/'cast_shape'. 3D: true/false",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "contact_monitor": {
+          "description": "RigidBody: enable contact monitoring for body_entered/body_exited signals",
+          "type": "boolean"
+        },
+        "max_contacts_reported": {
+          "description": "RigidBody: max contacts to report (requires contact_monitor)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_collision_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node to inspect"
+        },
+        "include_children": {
+          "description": "Include children in the scan (default: true)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_animation_tree",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the parent node where the AnimationTree will be added"
+        },
+        "anim_player": {
+          "description": "Relative path from the AnimationTree to the AnimationPlayer (e.g. '../AnimationPlayer')",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the AnimationTree node (default: 'AnimationTree')",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_animation_tree_structure",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_state_machine_state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        },
+        "state_name": {
+          "type": "string",
+          "description": "Name for the new state"
+        },
+        "state_type": {
+          "description": "Type of state: 'animation' (default), 'blend_tree', or 'state_machine'",
+          "type": "string",
+          "enum": [
+            "animation",
+            "blend_tree",
+            "state_machine"
+          ]
+        },
+        "animation": {
+          "description": "Animation name to play (only for state_type='animation')",
+          "type": "string"
+        },
+        "state_machine_path": {
+          "description": "Slash-separated path to a nested state machine (e.g. 'Run/SubState'). Empty or omit for root.",
+          "type": "string"
+        },
+        "position_x": {
+          "description": "X position in the graph editor (default: 0)",
+          "type": "number"
+        },
+        "position_y": {
+          "description": "Y position in the graph editor (default: 0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "state_name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "remove_state_machine_state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        },
+        "state_name": {
+          "type": "string",
+          "description": "Name of the state to remove"
+        },
+        "state_machine_path": {
+          "description": "Slash-separated path to a nested state machine. Empty or omit for root.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path",
+        "state_name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_state_machine_transition",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        },
+        "from_state": {
+          "type": "string",
+          "description": "Source state name (use 'Start' for the entry point)"
+        },
+        "to_state": {
+          "type": "string",
+          "description": "Destination state name (use 'End' for the exit point)"
+        },
+        "switch_mode": {
+          "description": "When to switch: 'at_end' (wait for animation), 'immediate' (default), 'sync'",
+          "type": "string",
+          "enum": [
+            "at_end",
+            "immediate",
+            "sync"
+          ]
+        },
+        "advance_mode": {
+          "description": "How to advance: 'disabled', 'enabled' (default, uses travel), 'auto' (automatic)",
+          "type": "string",
+          "enum": [
+            "disabled",
+            "enabled",
+            "auto"
+          ]
+        },
+        "advance_expression": {
+          "description": "GDScript expression that triggers this transition (e.g. 'is_running')",
+          "type": "string"
+        },
+        "xfade_time": {
+          "description": "Cross-fade time in seconds",
+          "type": "number"
+        },
+        "state_machine_path": {
+          "description": "Slash-separated path to a nested state machine. Empty or omit for root.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path",
+        "from_state",
+        "to_state"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "remove_state_machine_transition",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        },
+        "from_state": {
+          "type": "string",
+          "description": "Source state name"
+        },
+        "to_state": {
+          "type": "string",
+          "description": "Destination state name"
+        },
+        "state_machine_path": {
+          "description": "Slash-separated path to a nested state machine. Empty or omit for root.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path",
+        "from_state",
+        "to_state"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_blend_tree_node",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        },
+        "blend_tree_state": {
+          "type": "string",
+          "description": "Name of the BlendTree state in the state machine"
+        },
+        "bt_node_name": {
+          "type": "string",
+          "description": "Name for the node inside the BlendTree"
+        },
+        "bt_node_type": {
+          "type": "string",
+          "enum": [
+            "Animation",
+            "Add2",
+            "Blend2",
+            "Add3",
+            "Blend3",
+            "TimeScale",
+            "TimeSeek",
+            "Transition",
+            "OneShot",
+            "Sub2"
+          ],
+          "description": "Type of BlendTree node to create"
+        },
+        "animation": {
+          "description": "Animation name (only for bt_node_type='Animation')",
+          "type": "string"
+        },
+        "connect_to": {
+          "description": "Name of another BlendTree node to connect this node's output to",
+          "type": "string"
+        },
+        "connect_port": {
+          "description": "Input port index on the target node (default: 0)",
+          "type": "number"
+        },
+        "state_machine_path": {
+          "description": "Slash-separated path to a nested state machine. Empty or omit for root.",
+          "type": "string"
+        },
+        "position_x": {
+          "description": "X position in the graph editor (default: 0)",
+          "type": "number"
+        },
+        "position_y": {
+          "description": "Y position in the graph editor (default: 0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "blend_tree_state",
+        "bt_node_name",
+        "bt_node_type"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_tree_parameter",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationTree node"
+        },
+        "parameter": {
+          "type": "string",
+          "description": "Parameter path (e.g. 'conditions/is_running', 'Blend2/blend_amount'). 'parameters/' prefix is auto-added if missing."
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Parameter value. Strings are auto-parsed for Vector2, Color, etc."
+        }
+      },
+      "required": [
+        "node_path",
+        "parameter",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_navigation_region",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the parent node to add the region to"
+        },
+        "mode": {
+          "description": "Force '2d' or '3d' mode, or 'auto' to detect from parent (default: auto)",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the NavigationRegion node",
+          "type": "string"
+        },
+        "navigation_layers": {
+          "description": "Navigation layers bitmask",
+          "type": "number"
+        },
+        "agent_radius": {
+          "description": "Agent radius for mesh generation (3D default: 0.5, 2D: from NavigationPolygon)",
+          "type": "number"
+        },
+        "agent_height": {
+          "description": "Agent height (3D only, default: 1.5)",
+          "type": "number"
+        },
+        "agent_max_climb": {
+          "description": "Max climb height (3D only, default: 0.25)",
+          "type": "number"
+        },
+        "agent_max_slope": {
+          "description": "Max slope angle in degrees (3D only, default: 45.0)",
+          "type": "number"
+        },
+        "cell_size": {
+          "description": "Cell size for navigation mesh (default: 0.25 for 3D)",
+          "type": "number"
+        },
+        "cell_height": {
+          "description": "Cell height (3D only, default: 0.25)",
+          "type": "number"
+        },
+        "source_geometry_mode": {
+          "description": "2D only: root_node, groups_with_children, or groups_explicit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "bake_navigation_mesh",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the NavigationRegion2D or NavigationRegion3D node"
+        },
+        "outline": {
+          "description": "2D only: Array of outline vertices as [x,y] pairs or {x,y} objects. At least 3 vertices required.",
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "[x, y] coordinate pair"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_navigation_agent",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the parent node to add the agent to"
+        },
+        "mode": {
+          "description": "Force '2d' or '3d' mode, or 'auto' to detect from parent (default: auto)",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the NavigationAgent node",
+          "type": "string"
+        },
+        "path_desired_distance": {
+          "description": "Distance threshold to advance to next path point",
+          "type": "number"
+        },
+        "target_desired_distance": {
+          "description": "Distance threshold to consider target reached",
+          "type": "number"
+        },
+        "radius": {
+          "description": "Agent radius for avoidance",
+          "type": "number"
+        },
+        "neighbor_distance": {
+          "description": "Max distance to consider other agents as neighbors",
+          "type": "number"
+        },
+        "max_neighbors": {
+          "description": "Max number of neighbors for avoidance",
+          "type": "number"
+        },
+        "max_speed": {
+          "description": "Maximum movement speed for avoidance",
+          "type": "number"
+        },
+        "avoidance_enabled": {
+          "description": "Enable avoidance behavior",
+          "type": "boolean"
+        },
+        "navigation_layers": {
+          "description": "Navigation layers bitmask for pathfinding queries",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_navigation_layers",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to a NavigationRegion2D/3D or NavigationAgent2D/3D node"
+        },
+        "layers": {
+          "description": "Navigation layers as a bitmask value (e.g. 5 = layers 1 and 3)",
+          "type": "number"
+        },
+        "layer_bits": {
+          "description": "Array of 1-based layer numbers to enable (e.g. [1, 3] = bitmask 5)",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "layer_names": {
+          "description": "Array of named layer names from ProjectSettings (layer_names/2d_navigation/layer_N or 3d)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_navigation_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the root node to inspect"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "list_animations",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationPlayer node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_animation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationPlayer node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name for the new animation"
+        },
+        "length": {
+          "description": "Animation length in seconds (default: 1.0)",
+          "type": "number"
+        },
+        "loop_mode": {
+          "description": "Loop mode: 0=none, 1=linear, 2=pingpong (default: 0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_animation_track",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationPlayer node"
+        },
+        "animation": {
+          "type": "string",
+          "description": "Animation name"
+        },
+        "track_path": {
+          "type": "string",
+          "description": "Node path and property for the track (e.g. 'Sprite2D:position')"
+        },
+        "track_type": {
+          "description": "Track type: value, position_2d, rotation_2d, scale_2d, method, bezier, blend_shape (default: value)",
+          "type": "string"
+        },
+        "update_mode": {
+          "description": "Update mode for value tracks: continuous, discrete, capture",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path",
+        "animation",
+        "track_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_animation_keyframe",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationPlayer node"
+        },
+        "animation": {
+          "type": "string",
+          "description": "Animation name"
+        },
+        "track_index": {
+          "type": "number",
+          "description": "Track index"
+        },
+        "time": {
+          "type": "number",
+          "description": "Time position in seconds"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Keyframe value. Strings auto-parsed for Vector2, Color, etc."
+        },
+        "easing": {
+          "description": "Easing/transition value. 1.0=linear, <1.0=ease-in, >1.0=ease-out. Use negative for in-out variants. (default: 1.0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "animation",
+        "track_index",
+        "time",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_animation_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationPlayer node"
+        },
+        "animation": {
+          "type": "string",
+          "description": "Animation name"
+        }
+      },
+      "required": [
+        "node_path",
+        "animation"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "remove_animation",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the AnimationPlayer node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the animation to remove"
+        }
+      },
+      "required": [
+        "node_path",
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_audio_bus_layout",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_audio_bus",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name for the new audio bus"
+        },
+        "volume_db": {
+          "description": "Volume in dB (default: 0)",
+          "type": "number"
+        },
+        "send": {
+          "description": "Name of the bus to send output to (e.g. 'Master')",
+          "type": "string"
+        },
+        "solo": {
+          "description": "Solo this bus (default: false)",
+          "type": "boolean"
+        },
+        "mute": {
+          "description": "Mute this bus (default: false)",
+          "type": "boolean"
+        },
+        "at_position": {
+          "description": "Bus index position to insert at (-1 = end)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_audio_bus",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the audio bus to modify"
+        },
+        "volume_db": {
+          "description": "Volume in dB",
+          "type": "number"
+        },
+        "solo": {
+          "description": "Solo state",
+          "type": "boolean"
+        },
+        "mute": {
+          "description": "Mute state",
+          "type": "boolean"
+        },
+        "bypass_effects": {
+          "description": "Bypass all effects on this bus",
+          "type": "boolean"
+        },
+        "send": {
+          "description": "Name of the bus to send output to",
+          "type": "string"
+        },
+        "rename": {
+          "description": "New name for the bus",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_audio_bus_effect",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "bus": {
+          "type": "string",
+          "description": "Name of the audio bus"
+        },
+        "effect_type": {
+          "type": "string",
+          "description": "Effect type: reverb, chorus, delay, compressor, limiter, phaser, distortion, lowpassfilter (or lowpass), highpassfilter (or highpass), bandpassfilter (or bandpass), amplify, eq"
+        },
+        "params": {
+          "description": "Effect-specific parameters. E.g. for reverb: {room_size, damping, wet, dry, spread}; for compressor: {threshold, ratio, attack_us, release_ms}; for filters: {cutoff_hz, resonance}",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          }
+        },
+        "at_position": {
+          "description": "Effect index position (-1 = end)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "bus",
+        "effect_type"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_audio_player",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the parent node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name for the new audio player node"
+        },
+        "type": {
+          "description": "Player type: AudioStreamPlayer (default), AudioStreamPlayer2D, AudioStreamPlayer3D",
+          "type": "string"
+        },
+        "stream": {
+          "description": "Path to audio resource (e.g. 'res://audio/music.ogg')",
+          "type": "string"
+        },
+        "volume_db": {
+          "description": "Volume in dB (default: 0)",
+          "type": "number"
+        },
+        "bus": {
+          "description": "Audio bus name (default: 'Master')",
+          "type": "string"
+        },
+        "autoplay": {
+          "description": "Auto-play when scene starts (default: false)",
+          "type": "boolean"
+        },
+        "max_distance": {
+          "description": "Maximum hearing distance (for 2D/3D players)",
+          "type": "number"
+        },
+        "attenuation": {
+          "description": "Distance attenuation factor (for 2D players)",
+          "type": "number"
+        },
+        "attenuation_model": {
+          "description": "Attenuation model for 3D: 0=inverse_distance, 1=inverse_square, 2=logarithmic",
+          "type": "number"
+        },
+        "unit_size": {
+          "description": "Unit size for 3D player volume reference",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_audio_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the root node to search within"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_nodes_by_type",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Node type/class to search for (e.g. 'Sprite2D', 'Label', 'CollisionShape2D')"
+        },
+        "recursive": {
+          "description": "Search recursively through children (default: true)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_signal_connections",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "signal_name": {
+          "description": "Filter by signal name (partial match)",
+          "type": "string"
+        },
+        "node_path": {
+          "description": "Filter by node path (partial match)",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "batch_set_property",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Node type to target (e.g. 'Label', 'Sprite2D')"
+        },
+        "property": {
+          "type": "string",
+          "description": "Property name to set (e.g. 'visible', 'modulate')"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Value to set. Strings auto-parsed for Vector2, Color, etc."
+        }
+      },
+      "required": [
+        "type",
+        "property",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "batch_add_nodes",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Node type (e.g. 'Sprite2D', 'CharacterBody2D', 'Label')"
+              },
+              "parent_path": {
+                "description": "Parent node path (default: root '.'). Can reference nodes created earlier in this batch.",
+                "type": "string"
+              },
+              "name": {
+                "description": "Node name",
+                "type": "string"
+              },
+              "properties": {
+                "description": "Properties to set (e.g. {\"position\": \"Vector2(100, 200)\"})",
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "description": "Array of node definitions to add, processed in order"
+        }
+      },
+      "required": [
+        "nodes"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_node_references",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Text pattern to search for"
+        }
+      },
+      "required": [
+        "pattern"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_scene_dependencies",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the scene or resource file (e.g. 'res://scenes/player.tscn')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "cross_scene_set_property",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Node type to target (e.g. 'Label', 'Sprite2D')"
+        },
+        "property": {
+          "type": "string",
+          "description": "Property name to set"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Value to set. Strings auto-parsed for Vector2, Color, etc."
+        },
+        "path_filter": {
+          "description": "Directory to search in (default: 'res://')",
+          "type": "string"
+        },
+        "exclude_addons": {
+          "description": "Exclude addons/ directory (default: true)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "property",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "list_export_presets",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "export_project",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "preset_name": {
+          "description": "Export preset name",
+          "type": "string"
+        },
+        "preset_index": {
+          "description": "Export preset index (alternative to name)",
+          "type": "number"
+        },
+        "debug": {
+          "description": "Debug export (default: true)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_export_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_particles",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parent_path": {
+          "type": "string",
+          "description": "Path to the parent node to add particles to"
+        },
+        "name": {
+          "description": "Name for the particles node (default: 'Particles')",
+          "type": "string"
+        },
+        "is_3d": {
+          "description": "Create GPUParticles3D instead of GPUParticles2D (default: false)",
+          "type": "boolean"
+        },
+        "amount": {
+          "description": "Number of particles (default: 16)",
+          "type": "number"
+        },
+        "lifetime": {
+          "description": "Particle lifetime in seconds (default: 1.0)",
+          "type": "number"
+        },
+        "one_shot": {
+          "description": "Emit only once (default: false)",
+          "type": "boolean"
+        },
+        "explosiveness": {
+          "description": "Explosiveness ratio 0-1 (default: 0.0)",
+          "type": "number"
+        },
+        "randomness": {
+          "description": "Randomness ratio 0-1 (default: 0.0)",
+          "type": "number"
+        },
+        "emitting": {
+          "description": "Start emitting immediately (default: true)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "parent_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_particle_material",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the GPUParticles2D/3D node"
+        },
+        "direction": {
+          "description": "Emission direction vector",
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "z": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "spread": {
+          "description": "Spread angle in degrees (0-180)",
+          "type": "number"
+        },
+        "initial_velocity_min": {
+          "description": "Minimum initial velocity",
+          "type": "number"
+        },
+        "initial_velocity_max": {
+          "description": "Maximum initial velocity",
+          "type": "number"
+        },
+        "gravity": {
+          "description": "Gravity vector",
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "z": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "scale_min": {
+          "description": "Minimum particle scale",
+          "type": "number"
+        },
+        "scale_max": {
+          "description": "Maximum particle scale",
+          "type": "number"
+        },
+        "color": {
+          "description": "Particle color (hex '#RRGGBB' or named color)",
+          "type": "string"
+        },
+        "emission_shape": {
+          "description": "Emission shape: point, sphere, sphere_surface, box, ring",
+          "type": "string"
+        },
+        "emission_sphere_radius": {
+          "description": "Sphere emission radius",
+          "type": "number"
+        },
+        "emission_box_extents": {
+          "description": "Box emission extents",
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "z": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "emission_ring_radius": {
+          "description": "Ring outer radius",
+          "type": "number"
+        },
+        "emission_ring_inner_radius": {
+          "description": "Ring inner radius",
+          "type": "number"
+        },
+        "emission_ring_height": {
+          "description": "Ring height",
+          "type": "number"
+        },
+        "angular_velocity_min": {
+          "description": "Minimum angular velocity (degrees/sec)",
+          "type": "number"
+        },
+        "angular_velocity_max": {
+          "description": "Maximum angular velocity (degrees/sec)",
+          "type": "number"
+        },
+        "orbit_velocity_min": {
+          "description": "Minimum orbit velocity",
+          "type": "number"
+        },
+        "orbit_velocity_max": {
+          "description": "Maximum orbit velocity",
+          "type": "number"
+        },
+        "damping_min": {
+          "description": "Minimum damping",
+          "type": "number"
+        },
+        "damping_max": {
+          "description": "Maximum damping",
+          "type": "number"
+        },
+        "attractor_interaction_enabled": {
+          "description": "Enable attractor interaction",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_particle_color_gradient",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the GPUParticles2D/3D node"
+        },
+        "stops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "offset": {
+                "type": "number",
+                "description": "Gradient position (0.0 to 1.0)"
+              },
+              "color": {
+                "type": "string",
+                "description": "Color at this stop (hex '#RRGGBB' or named color)"
+              }
+            },
+            "required": [
+              "offset",
+              "color"
+            ]
+          },
+          "description": "Array of gradient color stops"
+        }
+      },
+      "required": [
+        "node_path",
+        "stops"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "apply_particle_preset",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the GPUParticles2D/3D node"
+        },
+        "preset": {
+          "type": "string",
+          "description": "Preset name: explosion, fire, smoke, sparks, rain, snow, magic, dust"
+        }
+      },
+      "required": [
+        "node_path",
+        "preset"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_particle_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the GPUParticles2D/3D node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_performance_monitors",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "description": "Filter by category prefix: 'fps', 'memory', 'render', 'physics_2d', 'physics_3d', 'navigation'",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_editor_performance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "read_resource",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the resource file (e.g. 'res://themes/main_theme.tres')"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "edit_resource",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the resource file (e.g. 'res://themes/main_theme.tres')"
+        },
+        "properties": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "description": "Properties to set as key-value pairs. Values auto-parsed for Vector2, Color, etc."
+        }
+      },
+      "required": [
+        "path",
+        "properties"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_resource",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to save the resource (e.g. 'res://resources/player_stats.tres')"
+        },
+        "type": {
+          "type": "string",
+          "description": "Resource type to create (e.g. 'StyleBoxFlat', 'LabelSettings', 'Environment')"
+        },
+        "properties": {
+          "description": "Initial properties to set",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          }
+        },
+        "overwrite": {
+          "description": "Overwrite if file exists (default: false)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "path",
+        "type"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_resource_preview",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the resource (e.g. 'res://assets/player.png', 'res://icon.svg')"
+        },
+        "max_size": {
+          "description": "Maximum width/height in pixels, preserving aspect ratio (default: 256)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_mesh_instance",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "mesh_type": {
+          "description": "Primitive mesh type: BoxMesh, SphereMesh, CylinderMesh, CapsuleMesh, PlaneMesh, PrismMesh, TorusMesh, QuadMesh",
+          "type": "string"
+        },
+        "mesh_file": {
+          "description": "Path to a 3D model file (res://path/to/model.glb, .gltf, .obj). Use instead of mesh_type for imported models",
+          "type": "string"
+        },
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name (default: MeshInstance3D)",
+          "type": "string"
+        },
+        "position": {
+          "description": "Position as Vector3 string 'Vector3(x,y,z)', object {x,y,z}, or array [x,y,z]"
+        },
+        "rotation": {
+          "description": "Rotation in degrees as Vector3 string, object {x,y,z}, or array [x,y,z]"
+        },
+        "scale": {
+          "description": "Scale as Vector3 string, object {x,y,z}, or array [x,y,z]"
+        },
+        "mesh_properties": {
+          "description": "Properties to set on the mesh resource (e.g. {\"size\": \"Vector3(2,1,2)\"} for BoxMesh)",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_lighting",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "light_type": {
+          "description": "Light type: DirectionalLight3D, OmniLight3D, SpotLight3D. Not needed if preset is specified",
+          "type": "string"
+        },
+        "preset": {
+          "description": "Preset configuration: 'sun' (directional, shadows, -45deg), 'indoor' (warm omni, range 8), 'dramatic' (spot, high energy, shadows)",
+          "type": "string"
+        },
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name",
+          "type": "string"
+        },
+        "color": {
+          "description": "Light color as Color string or hex (default: white)"
+        },
+        "energy": {
+          "description": "Light energy/intensity (default: 1.0)",
+          "type": "number"
+        },
+        "shadows": {
+          "description": "Enable shadow casting (default: false, true for sun/dramatic presets)",
+          "type": "boolean"
+        },
+        "range": {
+          "description": "Range for OmniLight3D/SpotLight3D (default: 5.0)",
+          "type": "number"
+        },
+        "attenuation": {
+          "description": "Attenuation for OmniLight3D/SpotLight3D (default: 1.0)",
+          "type": "number"
+        },
+        "spot_angle": {
+          "description": "Spot angle in degrees for SpotLight3D (default: 45.0)",
+          "type": "number"
+        },
+        "spot_angle_attenuation": {
+          "description": "Spot angle attenuation for SpotLight3D (default: 1.0)",
+          "type": "number"
+        },
+        "position": {
+          "description": "Position as Vector3 string, object {x,y,z}, or array [x,y,z]"
+        },
+        "rotation": {
+          "description": "Rotation in degrees as Vector3 string, object {x,y,z}, or array [x,y,z]"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_material_3d",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the MeshInstance3D node"
+        },
+        "surface_index": {
+          "description": "Surface index to apply material to (default: 0)",
+          "type": "number"
+        },
+        "albedo_color": {
+          "description": "Albedo color as Color string 'Color(r,g,b,a)', hex '#ff0000', or object {r,g,b,a}"
+        },
+        "albedo_texture": {
+          "description": "Path to albedo texture (res://path/to/texture.png)",
+          "type": "string"
+        },
+        "metallic": {
+          "description": "Metallic value 0.0-1.0 (default: 0.0)",
+          "type": "number"
+        },
+        "roughness": {
+          "description": "Roughness value 0.0-1.0 (default: 1.0)",
+          "type": "number"
+        },
+        "metallic_texture": {
+          "description": "Path to metallic texture",
+          "type": "string"
+        },
+        "roughness_texture": {
+          "description": "Path to roughness texture",
+          "type": "string"
+        },
+        "normal_texture": {
+          "description": "Path to normal map texture (auto-enables normal mapping)",
+          "type": "string"
+        },
+        "emission": {
+          "description": "Emission color (auto-enables emission). Color string or hex"
+        },
+        "emission_color": {
+          "description": "Alias for emission"
+        },
+        "emission_energy": {
+          "description": "Emission energy multiplier (default: 1.0)",
+          "type": "number"
+        },
+        "emission_texture": {
+          "description": "Path to emission texture",
+          "type": "string"
+        },
+        "transparency": {
+          "description": "Transparency mode: DISABLED, ALPHA, ALPHA_SCISSOR, ALPHA_HASH, ALPHA_DEPTH_PRE_PASS",
+          "type": "string"
+        },
+        "cull_mode": {
+          "description": "Cull mode: BACK, FRONT, DISABLED",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_environment",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "node_path": {
+          "description": "Path to an existing WorldEnvironment to modify instead of creating a new one",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name (default: WorldEnvironment)",
+          "type": "string"
+        },
+        "background_mode": {
+          "description": "Background mode: 'sky', 'color', 'canvas', 'clear_color' (default: sky)",
+          "type": "string"
+        },
+        "background_color": {
+          "description": "Background color when mode is 'color'"
+        },
+        "sky": {
+          "description": "ProceduralSkyMaterial settings",
+          "type": "object",
+          "properties": {
+            "sky_top_color": {
+              "description": "Sky top color"
+            },
+            "sky_horizon_color": {
+              "description": "Sky horizon color"
+            },
+            "ground_bottom_color": {
+              "description": "Ground bottom color"
+            },
+            "ground_horizon_color": {
+              "description": "Ground horizon color"
+            },
+            "sun_angle_max": {
+              "description": "Maximum sun angle in degrees",
+              "type": "number"
+            },
+            "sky_curve": {
+              "description": "Sky color curve (0.0-1.0)",
+              "type": "number"
+            }
+          }
+        },
+        "ambient_light_color": {
+          "description": "Ambient light color"
+        },
+        "ambient_light_energy": {
+          "description": "Ambient light energy",
+          "type": "number"
+        },
+        "ambient_light_source": {
+          "description": "Ambient light source: BACKGROUND, DISABLED, COLOR, SKY",
+          "type": "string"
+        },
+        "tonemap_mode": {
+          "description": "Tonemap mode: LINEAR, REINHARDT, FILMIC, ACES",
+          "type": "string"
+        },
+        "tonemap_exposure": {
+          "description": "Tonemap exposure",
+          "type": "number"
+        },
+        "tonemap_white": {
+          "description": "Tonemap white point",
+          "type": "number"
+        },
+        "fog_enabled": {
+          "description": "Enable volumetric fog",
+          "type": "boolean"
+        },
+        "fog_light_color": {
+          "description": "Fog light color"
+        },
+        "fog_density": {
+          "description": "Fog density",
+          "type": "number"
+        },
+        "fog_light_energy": {
+          "description": "Fog light energy",
+          "type": "number"
+        },
+        "glow_enabled": {
+          "description": "Enable glow/bloom",
+          "type": "boolean"
+        },
+        "glow_intensity": {
+          "description": "Glow intensity",
+          "type": "number"
+        },
+        "glow_strength": {
+          "description": "Glow strength",
+          "type": "number"
+        },
+        "glow_bloom": {
+          "description": "Glow bloom amount",
+          "type": "number"
+        },
+        "ssao_enabled": {
+          "description": "Enable Screen-Space Ambient Occlusion",
+          "type": "boolean"
+        },
+        "ssao_radius": {
+          "description": "SSAO radius",
+          "type": "number"
+        },
+        "ssao_intensity": {
+          "description": "SSAO intensity",
+          "type": "number"
+        },
+        "ssr_enabled": {
+          "description": "Enable Screen-Space Reflections",
+          "type": "boolean"
+        },
+        "ssr_max_steps": {
+          "description": "SSR max steps",
+          "type": "number"
+        },
+        "ssr_fade_in": {
+          "description": "SSR fade in",
+          "type": "number"
+        },
+        "ssr_fade_out": {
+          "description": "SSR fade out",
+          "type": "number"
+        },
+        "sdfgi_enabled": {
+          "description": "Enable Signed Distance Field Global Illumination",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_camera_3d",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "node_path": {
+          "description": "Path to an existing Camera3D to configure instead of creating a new one",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name (default: Camera3D)",
+          "type": "string"
+        },
+        "projection": {
+          "description": "Projection mode: 'perspective', 'orthogonal'/'orthographic', 'frustum'",
+          "type": "string"
+        },
+        "fov": {
+          "description": "Field of view in degrees for perspective (default: 75)",
+          "type": "number"
+        },
+        "size": {
+          "description": "View size for orthogonal projection",
+          "type": "number"
+        },
+        "near": {
+          "description": "Near clipping plane (default: 0.05)",
+          "type": "number"
+        },
+        "far": {
+          "description": "Far clipping plane (default: 4000)",
+          "type": "number"
+        },
+        "cull_mask": {
+          "description": "Cull mask as integer bitmask",
+          "type": "number"
+        },
+        "current": {
+          "description": "Make this the current/active camera (default: false)",
+          "type": "boolean"
+        },
+        "position": {
+          "description": "Position as Vector3 (default: (0, 1, 3) for new cameras)"
+        },
+        "rotation": {
+          "description": "Rotation in degrees as Vector3"
+        },
+        "look_at": {
+          "description": "Target position to look at as Vector3 (overrides rotation)"
+        },
+        "environment_path": {
+          "description": "Path to an Environment resource for camera-specific environment override",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "add_gridmap",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "parent_path": {
+          "description": "Parent node path (default: root '.')",
+          "type": "string"
+        },
+        "node_path": {
+          "description": "Path to an existing GridMap to configure instead of creating a new one",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name (default: GridMap)",
+          "type": "string"
+        },
+        "mesh_library_path": {
+          "description": "Path to a MeshLibrary resource (res://path/to/library.meshlib or .tres)",
+          "type": "string"
+        },
+        "cell_size": {
+          "description": "Cell size as Vector3 (default: (2, 2, 2))"
+        },
+        "position": {
+          "description": "GridMap position as Vector3"
+        },
+        "cells": {
+          "description": "Array of cells to set with grid positions and item IDs",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number",
+                "description": "Cell X coordinate"
+              },
+              "y": {
+                "type": "number",
+                "description": "Cell Y coordinate"
+              },
+              "z": {
+                "type": "number",
+                "description": "Cell Z coordinate"
+              },
+              "item": {
+                "description": "MeshLibrary item index (default: 0)",
+                "type": "number"
+              },
+              "orientation": {
+                "description": "Cell orientation index (default: 0)",
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y",
+              "z"
+            ]
+          }
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_shader",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path for the shader file (e.g. 'res://shaders/dissolve.gdshader')"
+        },
+        "shader_type": {
+          "description": "Shader type: spatial, canvas_item, particles, sky (default: spatial)",
+          "type": "string"
+        },
+        "content": {
+          "description": "Full shader code. If empty, generates a template.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "read_shader",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the shader file"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "edit_shader",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the shader file"
+        },
+        "content": {
+          "description": "Full replacement content",
+          "type": "string"
+        },
+        "replacements": {
+          "description": "Array of search-and-replace operations",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "search": {
+                "type": "string",
+                "description": "Text to find"
+              },
+              "replace": {
+                "type": "string",
+                "description": "Text to replace with"
+              }
+            },
+            "required": [
+              "search",
+              "replace"
+            ]
+          }
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "assign_shader_material",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the target node (CanvasItem or MeshInstance3D)"
+        },
+        "shader_path": {
+          "type": "string",
+          "description": "Path to the shader file"
+        }
+      },
+      "required": [
+        "node_path",
+        "shader_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_shader_param",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node with a ShaderMaterial"
+        },
+        "param": {
+          "type": "string",
+          "description": "Shader parameter name"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Parameter value. Strings auto-parsed for Vector2, Color, etc."
+        }
+      },
+      "required": [
+        "node_path",
+        "param",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_shader_params",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the node with a ShaderMaterial"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "run_test_scenario",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "scene_path": {
+          "description": "Scene to play before running steps. Use 'main' for main scene, 'current' for current scene, or a res:// path. If omitted, uses already-running scene.",
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
+          "description": "Array of test steps. Each step has a 'type' field: 'input' (action/keycode simulation), 'wait' (seconds or node_path to wait for), 'assert' (node_path+property+expected+operator, or text for screen text), 'screenshot' (capture a frame). Examples: {type:'input', action:'ui_accept'}, {type:'wait', seconds:0.5}, {type:'wait', node_path:'/root/Main/Player'}, {type:'assert', node_path:'/root/Main/Player', property:'health', expected:100, operator:'eq'}, {type:'assert', text:'Game Over'}, {type:'screenshot'}"
+        }
+      },
+      "required": [
+        "steps"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "assert_node_state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Absolute node path in the running game (e.g. '/root/Main/Player')"
+        },
+        "property": {
+          "type": "string",
+          "description": "Property name to check (e.g. 'health', 'position:x', 'visible')"
+        },
+        "expected": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Expected value to compare against"
+        },
+        "operator": {
+          "description": "Comparison operator (default: 'eq'). eq/neq: equality, gt/lt/gte/lte: numeric comparison, contains: string/array contains, type_is: check Godot type name",
+          "type": "string",
+          "enum": [
+            "eq",
+            "neq",
+            "gt",
+            "lt",
+            "gte",
+            "lte",
+            "contains",
+            "type_is"
+          ]
+        }
+      },
+      "required": [
+        "node_path",
+        "property",
+        "expected"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "assert_screen_text",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text to search for on screen (e.g. 'Game Over', 'Score:', 'New Game')"
+        },
+        "partial": {
+          "description": "Allow partial text matching (default: true). If false, requires exact match.",
+          "type": "boolean"
+        },
+        "case_sensitive": {
+          "description": "Case-sensitive comparison (default: true)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "run_stress_test",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "description": "Duration in seconds to run the stress test (1-60, default: 5)",
+          "type": "number"
+        },
+        "actions": {
+          "description": "Additional input action names to include in random input pool (e.g. ['jump', 'attack', 'dash'])",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_test_report",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "clear": {
+          "description": "Clear accumulated results after generating report (default: true)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "create_theme",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to save the theme (e.g. 'res://themes/main.tres')"
+        },
+        "default_font_size": {
+          "description": "Default font size",
+          "type": "number"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_theme_color",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Color name (e.g. 'font_color', 'font_hover_color')"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color as hex string (e.g. '#ff0000') or name"
+        },
+        "theme_type": {
+          "description": "Theme type (defaults to node's class)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path",
+        "name",
+        "color"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_theme_constant",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Constant name (e.g. 'margin_left', 'separation')"
+        },
+        "value": {
+          "type": "number",
+          "description": "Integer value"
+        }
+      },
+      "required": [
+        "node_path",
+        "name",
+        "value"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_theme_font_size",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Font size name (e.g. 'font_size')"
+        },
+        "size": {
+          "type": "number",
+          "description": "Font size in pixels"
+        }
+      },
+      "required": [
+        "node_path",
+        "name",
+        "size"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "set_theme_stylebox",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        },
+        "name": {
+          "type": "string",
+          "description": "Style name (e.g. 'panel', 'normal', 'hover', 'pressed')"
+        },
+        "bg_color": {
+          "description": "Background color (hex)",
+          "type": "string"
+        },
+        "border_color": {
+          "description": "Border color (hex)",
+          "type": "string"
+        },
+        "border_width": {
+          "description": "Border width in pixels",
+          "type": "number"
+        },
+        "corner_radius": {
+          "description": "Corner radius in pixels",
+          "type": "number"
+        },
+        "padding": {
+          "description": "Content padding in pixels",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "name"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "setup_control",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        },
+        "anchor_preset": {
+          "description": "Anchor preset: 'top_left', 'top_right', 'bottom_left', 'bottom_right', 'center_left', 'center_top', 'center_right', 'center_bottom', 'center', 'left_wide', 'top_wide', 'right_wide', 'bottom_wide', 'vcenter_wide', 'hcenter_wide', 'full_rect'",
+          "type": "string"
+        },
+        "min_size": {
+          "description": "Minimum size as 'Vector2(w, h)'",
+          "type": "string"
+        },
+        "size_flags_h": {
+          "description": "Horizontal size flags: 'fill', 'expand', 'fill_expand', 'shrink_center', 'shrink_end'",
+          "type": "string"
+        },
+        "size_flags_v": {
+          "description": "Vertical size flags: 'fill', 'expand', 'fill_expand', 'shrink_center', 'shrink_end'",
+          "type": "string"
+        },
+        "margins": {
+          "description": "Margin overrides for MarginContainer (sets theme constants margin_left/right/top/bottom)",
+          "type": "object",
+          "properties": {
+            "left": {
+              "type": "number"
+            },
+            "top": {
+              "type": "number"
+            },
+            "right": {
+              "type": "number"
+            },
+            "bottom": {
+              "type": "number"
+            }
+          }
+        },
+        "separation": {
+          "description": "Separation for VBoxContainer/HBoxContainer (theme constant override)",
+          "type": "number"
+        },
+        "grow_h": {
+          "description": "Horizontal grow direction: 'begin', 'end', 'both'",
+          "type": "string"
+        },
+        "grow_v": {
+          "description": "Vertical grow direction: 'begin', 'end', 'both'",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_theme_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the Control node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "tilemap_set_cell",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the TileMapLayer node"
+        },
+        "x": {
+          "type": "number",
+          "description": "Cell X coordinate"
+        },
+        "y": {
+          "type": "number",
+          "description": "Cell Y coordinate"
+        },
+        "source_id": {
+          "description": "Tile source ID (default: 0)",
+          "type": "number"
+        },
+        "atlas_x": {
+          "description": "Atlas X coordinate (default: 0)",
+          "type": "number"
+        },
+        "atlas_y": {
+          "description": "Atlas Y coordinate (default: 0)",
+          "type": "number"
+        },
+        "alternative": {
+          "description": "Alternative tile ID (default: 0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "x",
+        "y"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "tilemap_fill_rect",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the TileMapLayer node"
+        },
+        "x1": {
+          "type": "number",
+          "description": "Start X coordinate"
+        },
+        "y1": {
+          "type": "number",
+          "description": "Start Y coordinate"
+        },
+        "x2": {
+          "type": "number",
+          "description": "End X coordinate"
+        },
+        "y2": {
+          "type": "number",
+          "description": "End Y coordinate"
+        },
+        "source_id": {
+          "description": "Tile source ID (default: 0)",
+          "type": "number"
+        },
+        "atlas_x": {
+          "description": "Atlas X coordinate (default: 0)",
+          "type": "number"
+        },
+        "atlas_y": {
+          "description": "Atlas Y coordinate (default: 0)",
+          "type": "number"
+        },
+        "alternative": {
+          "description": "Alternative tile ID (default: 0)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path",
+        "x1",
+        "y1",
+        "x2",
+        "y2"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "tilemap_get_cell",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the TileMapLayer node"
+        },
+        "x": {
+          "type": "number",
+          "description": "Cell X coordinate"
+        },
+        "y": {
+          "type": "number",
+          "description": "Cell Y coordinate"
+        }
+      },
+      "required": [
+        "node_path",
+        "x",
+        "y"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "tilemap_clear",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the TileMapLayer node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "tilemap_get_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the TileMapLayer node"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "tilemap_get_used_cells",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "node_path": {
+          "type": "string",
+          "description": "Path to the TileMapLayer node"
+        },
+        "max_count": {
+          "description": "Maximum cells to return (default: 500)",
+          "type": "number"
+        }
+      },
+      "required": [
+        "node_path"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_unused_resources",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Root path to scan (default: res://)",
+          "type": "string"
+        },
+        "include_addons": {
+          "description": "Include addons/ directory in scan (default: false)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "analyze_signal_flow",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "analyze_scene_complexity",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Scene path to analyze (default: currently edited scene)",
+          "type": "string"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "find_script_references",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The script path, class_name, or resource path to search for (e.g. 'res://scripts/player.gd', 'PlayerController', 'res://assets/icon.png')"
+        },
+        "path": {
+          "description": "Root path to search (default: res://)",
+          "type": "string"
+        },
+        "include_addons": {
+          "description": "Include addons/ directory in search (default: false)",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "detect_circular_dependencies",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Root path to scan (default: res://)",
+          "type": "string"
+        },
+        "include_addons": {
+          "description": "Include addons/ directory in scan (default: false)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_project_statistics",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "description": "Root path to scan (default: res://)",
+          "type": "string"
+        },
+        "include_addons": {
+          "description": "Include addons/ directory in statistics (default: false)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "list_android_devices",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "get_android_preset_info",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "preset_name": {
+          "description": "Preset name as shown in Project > Export",
+          "type": "string"
+        },
+        "preset_index": {
+          "description": "Preset index (alternative to name)",
+          "type": "number"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  {
+    "name": "deploy_to_android",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "preset_name": {
+          "description": "Android export preset name (defaults to first Android preset)",
+          "type": "string"
+        },
+        "preset_index": {
+          "description": "Preset index (alternative to name)",
+          "type": "number"
+        },
+        "device_serial": {
+          "description": "adb device serial (omit to use default device)",
+          "type": "string"
+        },
+        "debug": {
+          "description": "Debug export (default: true)",
+          "type": "boolean"
+        },
+        "launch": {
+          "description": "Launch the app after install (default: true)",
+          "type": "boolean"
+        },
+        "skip_export": {
+          "description": "Skip the export step and install the existing APK at the preset's export_path (default: false)",
+          "type": "boolean"
+        }
+      },
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  }
+]

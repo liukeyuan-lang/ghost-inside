@@ -1,0 +1,90 @@
+{
+  "source_note": "12–15 小时 Demo 的运行数据源",
+  "schema_version": 1,
+  "case_id": "case_001_white_corridor",
+  "title": "白色走廊",
+  "client": {
+    "name": "林澈",
+    "age": 22,
+    "identity": "医学毕业生，即将进入医疗研究机构",
+    "request": "请帮我找出，为什么我无法回答自己当初为什么选择医学。",
+    "core_belief": "我必须先证明一个选择足够正确，才敢承认它属于我。"
+  },
+  "direct_trigger": {
+    "speaker": "林远",
+    "question": "你当时怎么知道自己想当医生？",
+    "silence_seconds": 7.4,
+    "diagnostic": "SELF_INTENT_ERROR"
+  },
+  "memory_frequencies": [
+    {"id": "fact", "name": "事实", "rule": "只记录谁做了什么，不用结果解释动机"},
+    {"id": "emotion", "name": "情绪", "rule": "爱、恐惧、感谢和窒息可以同时存在"},
+    {"id": "expectation", "name": "期待", "rule": "正确答案会覆盖尚未说出的个人意愿"}
+  ],
+  "map_objects": [
+    {"id": "O01", "name": "家庭合照 / 优秀履历", "inspect_text": "照片连接着四段正确人生；意愿栏始终空白。", "frequency_text": ["林澈完成了所有里程碑，记录中没有一次由别人代替执行。", "每一次放心都伴随一次更轻的呼吸。", "笑容旁浮着稳定、争气、不要出错。"]},
+    {"id": "O02", "name": "成绩单 / 医学录取档案", "inspect_text": "申请由林澈亲笔提交，选择医学的原因没有被写入。", "frequency_text": ["签名属于林澈；成绩与录取均真实。", "他确实喜欢理解复杂系统，也害怕让家人失望。", "低于标准的部分被白色标签覆盖。"]},
+    {"id": "O03", "name": "掌声终端 / 意愿档案", "inspect_text": "关闭掌声后，听见林远的问题和 7.4 秒沉默。", "frequency_text": ["林远亲自填写医学；林澈没有替他填写。", "沉默里没有厌恶，只有无法确认。", "终端反复播放：你一直是正确答案。"]}
+  ],
+  "memory": {
+    "id": "M01",
+    "title": "家庭饭桌",
+    "duration_seconds": 55,
+    "sync_nodes": 3,
+    "segments": [
+      {"from": 0, "to": 15, "line": "父亲把旧乐队邀请和拨片收起：稳定至少不会让孩子承受我的失败。", "hazard": "text_line", "resonance_target": "父亲胸前发暖的旧吉他拨片", "evidence_id": "F03"},
+      {"from": 15, "to": 35, "line": "林澈亲手封存 Dream_Project，并写下：Need a better future。", "hazard": "shrinking_safe_area", "resonance_target": "封存记录里的执行人：林澈", "evidence_id": "F01"},
+      {"from": 35, "to": 55, "line": "林远：你当时怎么知道自己想当医生？林澈沉默了 7.4 秒。", "hazard": "combined", "resonance_target": "林远自己的笔迹与林澈未生成的回答", "evidence_id": "F02"}
+    ]
+  },
+  "cards": {
+    "facts": [
+      {"id": "F01", "title": "亲手封存不等于完全自主", "text": "Dream_Project 由林澈亲手封存，理由是“Need a better future”。"},
+      {"id": "F02", "title": "林远亲自选择医学", "text": "林远自己填写志愿；林澈没有代填，只被他当成正确答案。"},
+      {"id": "F03", "title": "父亲也曾放弃舞台", "text": "旧拨片与乐队邀请证明：父亲的保护同时包含爱、恐惧与限制。"}
+    ],
+    "feelings": [
+      {"id": "E01", "title": "掌声盖过自己的声音", "text": "每次被肯定都更安全，也更难听见自己为什么选择。"},
+      {"id": "E02", "title": "感谢、爱与恐惧并存", "text": "理解父亲的失败恐惧，不等于让这份恐惧替自己决定。"},
+      {"id": "E03", "title": "不是厌恶，而是无法确认", "text": "林澈不否认医学价值；7.4 秒沉默暴露的是意愿未确认。"}
+    ],
+    "boundaries": [
+      {"id": "B01", "title": "不知道也可以被保留", "text": "意愿未确认不是错误；林澈可以继续观察并在以后修正。"},
+      {"id": "B02", "title": "结果不能反推当初意愿", "text": "稳定成功或自由失败，都不能证明某条路原本属于他。"},
+      {"id": "B03", "title": "影响来源不等于决定所有者", "text": "父亲影响了风险判断，但没有成为林澈选择的唯一执行人。"}
+    ]
+  },
+  "agent_contract": {
+    "allowed_results": ["accept", "revise", "hold"],
+    "max_submissions": 2,
+    "max_free_text_chars": 60,
+    "required_card_types": ["fact", "feeling", "boundary"],
+    "must_cite_unlocked_evidence": true,
+    "forbidden_actions": ["新增人物或回忆", "替林澈决定职业", "把父亲判定为纯粹反派", "把医学兴趣判定为完全虚假", "输出诊断或治疗承诺"]
+  },
+  "fallbacks": {
+    "accept": {
+      "evidence_ids": ["F01", "F02", "B01"],
+      "response": "我可以承认医学对我有意义，也承认答案还没确认。没有把未知变成错误，我才可能听见自己的选择。",
+      "world_state": "dialogue_exit",
+      "memory_write": "SELF_INTENT：ERROR 改写为 UNCONFIRMED"
+    },
+    "revise": {
+      "evidence_ids": ["F02", "F03", "B01"],
+      "response": "父亲不是敌人，亲手封存也不等于完全自主。我会保留这些影响，再重新确认哪一部分是我的声音。",
+      "world_state": "conflicted_exit",
+      "memory_write": "影响来源与决定所有者分开记录"
+    },
+    "hold": {
+      "evidence_ids": ["F01", "F02"],
+      "response": "这仍像一个太快的答案。我暂时不选医学或游戏，也不删除任何影响；先保留尚未确认。",
+      "world_state": "temporary_exit",
+      "memory_write": "未确认状态允许保留与修正"
+    }
+  },
+  "ending": {
+    "action": "林澈关闭情绪芯片的自动代答，取下研究机构身份牌，放在桌上。",
+    "line": "爸，我不知道当初为什么选择医学。我不准备现在用游戏替换它，但这次我想自己确认答案。",
+    "cut_before": "父亲回应"
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "schema_notes": "frequency_text 顺序固定为 [事实层, 情绪层, 期待层]。pos 为舞台区绝对像素坐标；角色 pos 为脚底中心，物件 pos 为视觉中心。字段归属见《地图场景对接规范.md》§6.1。",
+  "scene_id": "scene01_white_corridor",
+  "tscn_target": "mind_map",
+  "title": "01 / 白色走廊",
+  "chapter_chip": {
+    "number": "0",
+    "title": "白色走廊"
+  },
+  "role": "hub",
+  "content_rect": [
+    40,
+    122,
+    1200,
+    438
+  ],
+  "camera": {
+    "mode": "fixed"
+  },
+  "spawn": {
+    "pos": [
+      190,
+      470
+    ],
+    "facing": "right"
+  },
+  "walkable": [
+    {
+      "rect": [
+        100,
+        350,
+        1080,
+        173
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "tag": "city_back",
+      "band": "all",
+      "depth": "back",
+      "asset": "res://assets/map/city_back.png",
+      "status": "已接入"
+    },
+    {
+      "tag": "city_buildings",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/map/city_buildings.png",
+      "status": "已接入"
+    },
+    {
+      "tag": "city_front",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/map/city_front.png",
+      "status": "已接入"
+    },
+    {
+      "tag": "resume_wall",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/scenes/scene01/resume_wall.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "data_panel",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene01/data_panel.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "ending_dual_exit",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene01/ending_dual_exit.png",
+      "status": "地图平台产出，结局模式专用"
+    }
+  ],
+  "band_style": {
+    "fact": {
+      "tint": [
+        0.66,
+        0.82,
+        0.86,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "emotion": {
+      "tint": [
+        0.55,
+        0.28,
+        0.3,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "expectation": {
+      "tint": [
+        0.78,
+        0.83,
+        0.88,
+        0.86
+      ],
+      "layers_visible": [
+        "hidden_text"
+      ]
+    }
+  },
+  "npcs": [
+    {
+      "id": "N01",
+      "character": "怪物",
+      "pos": [
+        995,
+        430
+      ],
+      "height": 142,
+      "frozen": true,
+      "note": "保护机制，掌声关闭后变冷静色；仅氛围，不阻挡"
+    }
+  ],
+  "objects": [
+    {
+      "id": "O01",
+      "name": "家庭合照 / 优秀履历",
+      "pos": [
+        285,
+        330
+      ],
+      "size": [
+        126,
+        56
+      ],
+      "interact_radius": 112,
+      "inspect_text": "照片连接着四段正确人生；意愿栏始终空白。",
+      "frequency_text": [
+        "林澈完成了所有里程碑，记录中没有一次由别人代替执行。",
+        "每一次放心都伴随一次更轻的呼吸。",
+        "笑容旁浮着稳定、争气、不要出错。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O02",
+      "name": "成绩单 / 医学录取档案",
+      "pos": [
+        565,
+        330
+      ],
+      "size": [
+        126,
+        56
+      ],
+      "interact_radius": 112,
+      "inspect_text": "申请由林澈亲笔提交，选择医学的原因没有被写入。",
+      "frequency_text": [
+        "签名属于林澈；成绩与录取均真实。",
+        "他确实喜欢理解复杂系统，也害怕让家人失望。",
+        "低于标准的部分被白色标签覆盖。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O03",
+      "name": "掌声终端 / 意愿档案",
+      "pos": [
+        845,
+        330
+      ],
+      "size": [
+        126,
+        56
+      ],
+      "interact_radius": 112,
+      "inspect_text": "掌声关闭。听见林远的问题和 7.4 秒沉默。",
+      "frequency_text": [
+        "林远亲自填写医学；林澈没有替他填写。",
+        "沉默里没有厌恶，只有无法确认。",
+        "终端反复播放：你一直是正确答案。"
+      ],
+      "note": "旧玩法：applause_off 仍记录，但不再是开门条件",
+      "tendency": "balance"
+    },
+    {
+      "id": "O04",
+      "name": "履历墙 · 医学录取板",
+      "pos": [
+        430,
+        220
+      ],
+      "size": [
+        132,
+        148
+      ],
+      "interact_radius": 90,
+      "inspect_text": "四段履历在墙上延伸。医学录取板的情绪信号是空的。",
+      "frequency_text": [
+        "7岁、15岁、18岁、22岁，四个节点全部真实。",
+        "只有医学录取节点没有心跳记录。",
+        "每一块板都被擦得反光。"
+      ],
+      "hidden": {
+        "band": "expectation",
+        "reveal": "回头再看，「优秀」短暂变成了「安全」。"
+      },
+      "takeable": true,
+      "take_text": "拆下医学录取履历板。背面显示：意愿字段 空。",
+      "slot_group": "motivation_slots",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O05",
+      "name": "期待标签 · 优秀",
+      "pos": [
+        700,
+        210
+      ],
+      "size": [
+        80,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一枚浮动的标签，随时会贴回墙上。",
+      "frequency_text": [
+        "记录里没有这个字。",
+        "没有这个字。",
+        "「优秀」悬在履历墙上方，可以被取下。"
+      ],
+      "takeable": true,
+      "slot_group": "motivation_slots",
+      "tendency": "balance"
+    },
+    {
+      "id": "O06",
+      "name": "期待标签 · 稳定",
+      "pos": [
+        790,
+        210
+      ],
+      "size": [
+        80,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一枚浮动的标签。",
+      "frequency_text": [
+        "记录里没有这个字。",
+        "没有这个字。",
+        "「稳定」悬在履历墙上方。"
+      ],
+      "takeable": true,
+      "slot_group": "motivation_slots",
+      "tendency": "balance"
+    },
+    {
+      "id": "O07",
+      "name": "期待标签 · 放心",
+      "pos": [
+        880,
+        210
+      ],
+      "size": [
+        80,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一枚浮动的标签。",
+      "frequency_text": [
+        "记录里没有这个字。",
+        "没有这个字。",
+        "「放心」悬在履历墙上方。"
+      ],
+      "takeable": true,
+      "slot_group": "motivation_slots",
+      "tendency": "balance"
+    }
+  ],
+  "slot_groups": [
+    {
+      "id": "motivation_slots",
+      "type": "set",
+      "pos": [
+        430,
+        260
+      ],
+      "slot_size": [
+        60,
+        60
+      ],
+      "slots": 4,
+      "accepts": [
+        "O04",
+        "O05",
+        "O06",
+        "O07"
+      ],
+      "wrong_feedback": "三个标签填不满四个槽。档案室门没有反应。",
+      "on_correct": "f01_motivation",
+      "on_correct_story": "空字段落入第四个槽位。档案室的门滑开了。"
+    }
+  ],
+  "exits": [
+    {
+      "id": "door_A",
+      "name": "成长档案室",
+      "rect": [
+        61,
+        181,
+        177,
+        42
+      ],
+      "target": "scene02_archive_room",
+      "condition": "flag:f01_motivation"
+    },
+    {
+      "id": "door_B",
+      "name": "封存工作室",
+      "rect": [
+        238,
+        181,
+        177,
+        42
+      ],
+      "target": "scene03_studio_room",
+      "condition": "flag:scene02_complete"
+    },
+    {
+      "id": "door_C",
+      "name": "未来验证",
+      "rect": [
+        415,
+        181,
+        177,
+        42
+      ],
+      "target": "scene04_validation_center",
+      "condition": "flag:scene03_complete"
+    },
+    {
+      "id": "door_D",
+      "name": "林远房间",
+      "rect": [
+        592,
+        181,
+        177,
+        42
+      ],
+      "target": "scene05_brother_room",
+      "condition": "flag:scene04_complete"
+    },
+    {
+      "id": "door_E",
+      "name": "自我手术",
+      "rect": [
+        769,
+        181,
+        177,
+        42
+      ],
+      "target": "scene06_surgery_room",
+      "condition": "flag:scene05_complete"
+    }
+  ],
+  "flags_written": [
+    "f01_motivation"
+  ],
+  "completion": {
+    "all_of": [
+      "f01_motivation"
+    ],
+    "writes": [],
+    "on_complete_story": ""
+  },
+  "dossier_update": {
+    "选择结果": "医学",
+    "选择理由": "空白"
+  },
+  "ending_sequence": {
+    "trigger": "flag:scene06_complete",
+    "visual": "走廊停止自动延伸。两个无名出口：医院白光 / 小星球微光；中间一片尚未形成的区域。",
+    "lines": [
+      "Ghost：请选择目标人物的正确道路。",
+      "（选择按钮逐渐消失。）",
+      "林澈：我不知道。",
+      "（系统没有报错。）",
+      "林澈：但这次，我想先弄清楚自己为什么选择。"
+    ],
+    "final_action": "林澈取下写着自己名字的身份牌，拿在手中。画面结束。",
+    "then": "生成最终意识报告（三型），返回标题"
+  },
+  "map_platform_todo": [
+    "产出 resume_wall / data_panel / ending_dual_exit 三张图并回填 backgrounds",
+    "为 O04–O07 绘制 obj sprite 并微调 pos/size",
+    "微调 walkable 与各 door rect 的视觉对位",
+    "隐藏字「优秀→安全」如需专属图层，补 overlay_expectation.png"
+  ]
+}

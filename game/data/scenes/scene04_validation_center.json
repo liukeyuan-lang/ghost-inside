@@ -1,0 +1,540 @@
+{
+  "schema_version": 1,
+  "schema_notes": "frequency_text 顺序固定为 [事实层, 情绪层, 期待层]。pos 为舞台区绝对像素坐标；角色 pos 为脚底中心，物件 pos 为视觉中心。",
+  "scene_id": "scene04_validation_center",
+  "tscn_target": "scene04_validation_center",
+  "title": "04 / 未来验证中心",
+  "chapter_chip": {
+    "number": "C",
+    "title": "未来验证"
+  },
+  "role": "puzzle_room",
+  "content_rect": [
+    40,
+    122,
+    1200,
+    438
+  ],
+  "camera": {
+    "mode": "fixed"
+  },
+  "spawn": {
+    "pos": [
+      640,
+      510
+    ],
+    "facing": "up"
+  },
+  "walkable": [
+    {
+      "rect": [
+        100,
+        400,
+        1080,
+        140
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "tag": "bg_back",
+      "band": "all",
+      "depth": "back",
+      "asset": "res://assets/scenes/scene04/bg_back.png",
+      "status": "地图平台产出，对称双区：左林宇办公室 / 右陈默工作室"
+    },
+    {
+      "tag": "bg_mid",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/scenes/scene04/bg_mid.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "bg_front",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene04/bg_front.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_emotion",
+      "band": "emotion",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene04/overlay_emotion.png",
+      "status": "地图平台产出，林宇区含快门声波纹"
+    },
+    {
+      "tag": "overlay_expectation",
+      "band": "expectation",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene04/overlay_expectation.png",
+      "status": "地图平台产出"
+    }
+  ],
+  "band_style": {
+    "fact": {
+      "tint": [
+        0.66,
+        0.82,
+        0.86,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "emotion": {
+      "tint": [
+        0.55,
+        0.28,
+        0.3,
+        0.82
+      ],
+      "layers_visible": [
+        "overlay_emotion"
+      ]
+    },
+    "expectation": {
+      "tint": [
+        0.78,
+        0.83,
+        0.88,
+        0.86
+      ],
+      "layers_visible": [
+        "overlay_expectation"
+      ]
+    }
+  },
+  "npcs": [
+    {
+      "id": "N41",
+      "character": "林宇",
+      "pos": [
+        300,
+        470
+      ],
+      "height": 150,
+      "frozen": true,
+      "lines": [
+        "偶尔会想。但遗憾不能证明我选错了。"
+      ],
+      "note": "稳定成功模型，仅对话投影"
+    },
+    {
+      "id": "N42",
+      "character": "陈默",
+      "pos": [
+        980,
+        470
+      ],
+      "height": 150,
+      "frozen": true,
+      "lines": [
+        "自由不是让失败变得值得。是失败以后，你承认那是自己做过的决定，然后继续处理结果。"
+      ],
+      "note": "自由失败模型，仅对话投影"
+    }
+  ],
+  "objects": [
+    {
+      "id": "O41",
+      "name": "中央模拟器",
+      "pos": [
+        640,
+        300
+      ],
+      "size": [
+        140,
+        110
+      ],
+      "interact_radius": 100,
+      "inspect_text": "选择A 医学：预测结果 稳定。选择B 游戏：预测结果 高风险。请放入人生参考模型的公开资料。",
+      "frequency_text": [
+        "模拟器运行正常。",
+        "机身有轻微的嗡鸣，像在犹豫。",
+        "屏幕保护语：结果即证明。"
+      ],
+      "tendency": "balance"
+    },
+    {
+      "id": "O42",
+      "name": "林宇区 · 职业晋升记录",
+      "pos": [
+        220,
+        280
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "晋升记录连续而漂亮。",
+      "frequency_text": [
+        "每次晋升都有文件。",
+        "文件之间没有停顿的痕迹。",
+        "每页都盖着「符合预期」。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_linyu",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O43",
+      "name": "林宇区 · 家庭合照",
+      "pos": [
+        310,
+        280
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "合照里每个人都在笑。",
+      "frequency_text": [
+        "照片拍摄于年度休假。",
+        "快门按下时他正看向镜头之外。",
+        "照片被摆成工整的一排。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_linyu",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O44",
+      "name": "林宇区 · 收入记录",
+      "pos": [
+        400,
+        280
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "收入曲线平稳向上。",
+      "frequency_text": [
+        "数字真实。",
+        "曲线的规律精确得不像手绘。",
+        "标签：人生正确率 98。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_linyu",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O45",
+      "name": "林宇区 · 隐藏抽屉",
+      "pos": [
+        470,
+        350
+      ],
+      "size": [
+        60,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "办公桌深处似乎有一层薄抽屉。",
+      "frequency_text": [
+        "抽屉有锁。",
+        "贴近时能听到极轻的机械声。",
+        "表面与桌面齐平，像从不存在。"
+      ],
+      "conditional_interact": {
+        "requires_flags": [
+          "f41_public"
+        ],
+        "writes_flag": "f45_drawer_open",
+        "text": "情绪层里传来一声相机快门，声音来自桌内。你拉开了抽屉，里面是一组摄影作品。"
+      },
+      "tendency": "exploration"
+    },
+    {
+      "id": "O46",
+      "name": "林宇区 · 摄影作品",
+      "pos": [
+        470,
+        300
+      ],
+      "size": [
+        70,
+        55
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一组光线极佳的照片，题材全是被废弃的车站。",
+      "frequency_text": [
+        "照片拍摄于多年间，从未公开。",
+        "最近的一张就在上个月。",
+        "背面写着：如果那年没有回来，我现在会在哪里。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_linyu_hidden",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O47",
+      "name": "陈默区 · 投资终止书",
+      "pos": [
+        880,
+        280
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "投资方单方面终止合作的文件。",
+      "frequency_text": [
+        "签名与公章齐全。",
+        "签署当天他的录音还在讨论新版本。",
+        "文件边角卷起，被压在一堆设备下。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_chenmo",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O48",
+      "name": "陈默区 · 工作室关闭通知",
+      "pos": [
+        960,
+        280
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "工作室注销的通知，日期在终止书之后。",
+      "frequency_text": [
+        "通知程序合规。",
+        "贴通知的门框上还挂着开业花篮的干花。",
+        "通知上贴着标签：失败。"
+      ],
+      "hidden": {
+        "band": "fact",
+        "reveal": "通知背面印着新公司的入职邀请。他关闭工作室的第二周就入职了，未完成项目的经验全部转移到下一版本。"
+      },
+      "takeable": true,
+      "slot_group": "sim_chenmo",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O49",
+      "name": "陈默区 · 未完成项目文件",
+      "pos": [
+        1040,
+        280
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "工程文件停在一个未发布的版本号。",
+      "frequency_text": [
+        "最后提交在关闭通知前三天。",
+        "提交说明写着：能跑通了。",
+        "文件名被认真归档，不是随手丢下。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_chenmo",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O4A",
+      "name": "陈默区 · 录音卡",
+      "pos": [
+        1040,
+        380
+      ],
+      "size": [
+        60,
+        45
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一段没有删除的录音。",
+      "frequency_text": [
+        "录音时长 4 分 12 秒。",
+        "背景里有键盘声，他一边说一边在写代码。",
+        "录音开头是：我不后悔做过。"
+      ],
+      "takeable": true,
+      "slot_group": "sim_chenmo",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O4B",
+      "name": "结果印章",
+      "pos": [
+        640,
+        460
+      ],
+      "size": [
+        70,
+        70
+      ],
+      "interact_radius": 90,
+      "inspect_text": "请选择林澈的正确人生：A 稳定人生 / B 自由人生。",
+      "frequency_text": [
+        "印章只有两种图案。",
+        "握柄上有长期使用的包浆。",
+        "底座刻着：结果即证明。"
+      ]
+    }
+  ],
+  "slot_groups": [
+    {
+      "id": "sim_linyu",
+      "type": "set",
+      "pos": [
+        560,
+        300
+      ],
+      "slot_size": [
+        50,
+        50
+      ],
+      "slots": 3,
+      "accepts": [
+        "O42",
+        "O43",
+        "O44"
+      ],
+      "on_correct": "f41_public",
+      "on_correct_story": "公开资料全部放入模拟器：职业稳定 95、社会评价 92、经济安全 90——人生正确率仍然停留在 98，变量不完整。"
+    },
+    {
+      "id": "sim_linyu_hidden",
+      "type": "single",
+      "pos": [
+        600,
+        300
+      ],
+      "slot_size": [
+        50,
+        50
+      ],
+      "slots": 1,
+      "accepts": [
+        "O46"
+      ],
+      "requires_flags": [
+        "f45_drawer_open"
+      ],
+      "on_correct": "f41_linyu",
+      "on_correct_story": "隐藏变量载入：未完成感，持续存在。人生正确率：无法计算。林宇：偶尔会想。但遗憾不能证明我选错了。"
+    },
+    {
+      "id": "sim_chenmo",
+      "type": "set",
+      "pos": [
+        690,
+        300
+      ],
+      "slot_size": [
+        50,
+        50
+      ],
+      "slots": 3,
+      "accepts": [
+        "O47",
+        "O49",
+        "O4A"
+      ],
+      "on_correct": "f42_partial",
+      "on_correct_story": "项目结果失败、工作室关闭、经济安全低——人生正确率 12。系统仍提示：变量不完整。"
+    },
+    {
+      "id": "sim_chenmo_hidden",
+      "type": "single",
+      "pos": [
+        730,
+        300
+      ],
+      "slot_size": [
+        50,
+        50
+      ],
+      "slots": 1,
+      "accepts": [
+        "O48"
+      ],
+      "requires_flags": [
+        "f42_partial"
+      ],
+      "on_correct": "f42_chenmo",
+      "on_correct_story": "隐藏变量载入：项目结果失败、人生终止否、选择价值无法由结果判定。陈默：自由不是让失败变得值得。"
+    },
+    {
+      "id": "stamp",
+      "type": "choice",
+      "pos": [
+        640,
+        430
+      ],
+      "slot_size": [
+        90,
+        40
+      ],
+      "slots": 1,
+      "options": [
+        "A 稳定人生",
+        "B 自由人生",
+        "翻转印章"
+      ],
+      "correct": "翻转印章",
+      "requires_flags": [
+        "f41_linyu",
+        "f42_chenmo"
+      ],
+      "wrong_feedback": "错误。良好结果不能证明初始意愿。/ 错误。被放弃的可能性不能自动代表真实意愿。",
+      "on_correct": "f43_stamp",
+      "on_correct_story": "印章背面刻着：无法由结果反推意愿。你把它盖在两条模拟结果的中间。验证完成。"
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit_corridor",
+      "name": "返回走廊",
+      "rect": [
+        50,
+        390,
+        46,
+        150
+      ],
+      "target": "scene01_white_corridor",
+      "condition": "always"
+    }
+  ],
+  "flags_written": [
+    "f41_public",
+    "f45_drawer_open",
+    "f41_linyu",
+    "f42_partial",
+    "f42_chenmo",
+    "f43_stamp"
+  ],
+  "completion": {
+    "all_of": [
+      "f41_linyu",
+      "f42_chenmo",
+      "f43_stamp"
+    ],
+    "writes": [
+      "scene04_complete"
+    ],
+    "on_complete_story": "Ghost：已排除通过人生结果确认意愿的可能。玩家：那还缺什么？Ghost：目标人物从未被要求直接说明选择理由。"
+  },
+  "dossier_update": {
+    "稳定结果": "不能证明正确",
+    "失败结果": "不能证明错误",
+    "选择理由": "仍空白"
+  },
+  "map_platform_todo": [
+    "产出对称双区背景（左办公室/右工作室）与两张频段覆盖层",
+    "为 O41–O4B 绘制 obj sprite 并微调 pos/size",
+    "画出模拟器投入槽与印章交互位的视觉位置",
+    "微调 walkable 与 exit rect"
+  ]
+}

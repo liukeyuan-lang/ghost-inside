@@ -1,0 +1,6 @@
+[
+  {"name":"play_scene","arguments":{"mode":"main"}},
+  {"wait_ms":3500},
+  {"name":"get_game_screenshot","arguments":{}},
+  {"name":"get_editor_errors","arguments":{"max_lines":50}}
+]

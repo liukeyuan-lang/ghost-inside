@@ -1,0 +1,76 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started 项目初始化 (5 steps)
+[   0% ] first_scan_filesystem | 正在扫描文件结构……
+[  16% ] first_scan_filesystem | 正在加载全局类名……
+[  33% ] first_scan_filesystem | 正在校验 GDExtension……
+[  50% ] first_scan_filesystem | 正在创建自动加载脚本……
+[  66% ] first_scan_filesystem | 正在初始化插件……
+[  83% ] first_scan_filesystem | 正在启动文件扫描……
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started 正在注册全局类…… (3 steps)
+[   0% ] update_scripts_classes | 
+[  25% ] update_scripts_classes | 
+[  50% ] update_scripts_classes | 
+[ DONE ] update_scripts_classes
+
+[   0% ] savepack | Started 打包中 (102 steps)
+[   1% ] savepack | 正在保存文件：res://scripts/placeholder.gdc
+[   4% ] savepack | 正在保存文件：res://scripts/mind_map.gdc
+[   8% ] savepack | 正在保存文件：res://scripts/memory_dinner.gdc
+[  12% ] savepack | 正在保存文件：res://scripts/main.gdc
+[  15% ] savepack | 正在保存文件：res://scripts/ending.gdc
+[  19% ] savepack | 正在保存文件：res://scripts/ai_gateway.gdc
+[  23% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-e2cd3ad146e88a9ce40b77a5da0ea9b1-start.scn
+[  26% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-eea9240b4cf60f577f75dad463a66117-seed_lab.scn
+[  30% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-df7847124031e8b4e78714db59b79ca6-mind_map.scn
+[  33% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-6d029b1b61bbf615af4683b8484c16e6-memory_dinner.scn
+[  37% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-006133b4a0975dd47e96ebccbccc9102-ending.scn
+[  40% ] savepack | 正在保存文件：res://data/cases/white_corridor.json
+[  44% ] savepack | 正在保存文件：res://autoload/game_state.gdc
+[  48% ] savepack | 正在保存文件：res://.godot/imported/title_art.png-4f3a3fc727d10b01830a2a1ad6478441.ctex
+[  48% ] savepack | 正在保存文件：res://assets/ui/title_art.png.import
+[  51% ] savepack | 正在保存文件：res://.godot/imported/ark-pixel-12px-proportional-zh_cn.ttf-95d1a2d1bd637faa7f67315e5db49cf9.fontdata
+[  51% ] savepack | 正在保存文件：res://assets/fonts/ark-pixel-12px-proportional-zh_cn.ttf.import
+[  55% ] savepack | 正在保存文件：res://.godot/imported/pulse.wav-2767f1702d87630aca6f39d522402577.sample
+[  55% ] savepack | 正在保存文件：res://assets/audio/pulse.wav.import
+[  59% ] savepack | 正在保存文件：res://.godot/imported/interact.wav-4b4811d5e78a55ceeb44839962a3ab6e.sample
+[  59% ] savepack | 正在保存文件：res://assets/audio/interact.wav.import
+[  62% ] savepack | 正在保存文件：res://.godot/imported/impact.wav-69c408f3f3e73daf7c3030beaa0507af.sample
+[  62% ] savepack | 正在保存文件：res://assets/audio/impact.wav.import
+[  66% ] savepack | 正在保存文件：res://.godot/imported/evidence.wav-6a1ce61007802e420f45f4d37a80612e.sample
+[  66% ] savepack | 正在保存文件：res://assets/audio/evidence.wav.import
+[  69% ] savepack | 正在保存文件：res://.godot/imported/change.wav-06ec101e2f498926eccc69cb39f774d6.sample
+[  69% ] savepack | 正在保存文件：res://assets/audio/change.wav.import
+[  73% ] savepack | 正在保存文件：res://.godot/imported/ambience.ogg-d71de00c831cf4cb724cc4936e6996d2.oggvorbisstr
+[  73% ] savepack | 正在保存文件：res://assets/audio/ambience.ogg.import
+[  76% ] savepack | 正在保存文件：res://scripts/seed_lab.gdc
+[  80% ] savepack | 正在保存文件：res://scripts/start.gdc
+[  84% ] savepack | 正在保存文件：res://scripts/view.gdc
+[  87% ] savepack | 正在保存文件：res://tests/gateway_test.gdc
+[  91% ] savepack | 正在保存文件：res://tests/playthrough.gdc
+[  95% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn
+[  95% ] savepack | 正在保存文件：res://scripts/placeholder.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/mind_map.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/memory_dinner.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/main.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/ending.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/ai_gateway.gd.remap
+[  95% ] savepack | 正在保存文件：res://scenes/start.tscn.remap
+[  95% ] savepack | 正在保存文件：res://scenes/seed_lab.tscn.remap
+[  95% ] savepack | 正在保存文件：res://scenes/mind_map.tscn.remap
+[  95% ] savepack | 正在保存文件：res://scenes/memory_dinner.tscn.remap
+[  95% ] savepack | 正在保存文件：res://scenes/ending.tscn.remap
+[  95% ] savepack | 正在保存文件：res://autoload/game_state.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/seed_lab.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/start.gd.remap
+[  95% ] savepack | 正在保存文件：res://scripts/view.gd.remap
+[  95% ] savepack | 正在保存文件：res://tests/gateway_test.gd.remap
+[  95% ] savepack | 正在保存文件：res://tests/playthrough.gd.remap
+[  95% ] savepack | 正在保存文件：res://main.tscn.remap
+[  95% ] savepack | 正在保存文件：res://.godot/global_script_class_cache.cfg
+[  95% ] savepack | 正在保存文件：res://.godot/uid_cache.bin
+[  95% ] savepack | 正在保存文件：res://project.binary
+[ DONE ] savepack
+

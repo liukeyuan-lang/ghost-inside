@@ -1,0 +1,149 @@
+WorkerThreadPool: 12 threads, 3 max low-priority.
+ERROR: Failed to open 'user://logs/godot2026-09-23T12.04.50.log'.
+   at: copy (core/io/dir_access.cpp:429)
+ERROR: Failed to open log file for writing: user://logs/godot.log
+   at: rotate_file (core/io/logger.cpp:169)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://autoload/game_state.gd remapped: res://autoload/game_state.gd
+Completed load for: 'res://autoload/game_state.gd' remapped 'res://autoload/game_state.gd' at thread -1
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+Loaded builtin CA certificates
+Loading resource: res://main.tscn remapped: res://main.tscn
+Loading resource: res://scripts/main.gd remapped: res://scripts/main.gd
+Completed load for: 'res://scripts/main.gd' remapped 'res://scripts/main.gd' at thread -1
+Completed load for: 'res://main.tscn' remapped 'res://main.tscn' at thread -1
+Loading resource: res://assets/fonts/ark-pixel-12px-proportional-zh_cn.ttf remapped: res://assets/fonts/ark-pixel-12px-proportional-zh_cn.ttf
+Loading resource: res://.godot/imported/ark-pixel-12px-proportional-zh_cn.ttf-95d1a2d1bd637faa7f67315e5db49cf9.fontdata remapped: res://.godot/imported/ark-pixel-12px-proportional-zh_cn.ttf-95d1a2d1bd637faa7f67315e5db49cf9.fontdata
+Completed load for: 'res://assets/fonts/ark-pixel-12px-proportional-zh_cn.ttf' remapped 'res://assets/fonts/ark-pixel-12px-proportional-zh_cn.ttf' at thread -1
+Loading resource: res://assets/audio/ambience.ogg remapped: res://assets/audio/ambience.ogg
+Loading resource: res://.godot/imported/ambience.ogg-d71de00c831cf4cb724cc4936e6996d2.oggvorbisstr remapped: res://.godot/imported/ambience.ogg-d71de00c831cf4cb724cc4936e6996d2.oggvorbisstr
+Completed load for: 'res://assets/audio/ambience.ogg' remapped 'res://assets/audio/ambience.ogg' at thread -1
+Loading resource: res://assets/audio/interact.wav remapped: res://assets/audio/interact.wav
+Loading resource: res://.godot/imported/interact.wav-4b4811d5e78a55ceeb44839962a3ab6e.sample remapped: res://.godot/imported/interact.wav-4b4811d5e78a55ceeb44839962a3ab6e.sample
+Completed load for: 'res://assets/audio/interact.wav' remapped 'res://assets/audio/interact.wav' at thread -1
+Loading resource: res://assets/audio/pulse.wav remapped: res://assets/audio/pulse.wav
+Loading resource: res://.godot/imported/pulse.wav-2767f1702d87630aca6f39d522402577.sample remapped: res://.godot/imported/pulse.wav-2767f1702d87630aca6f39d522402577.sample
+Completed load for: 'res://assets/audio/pulse.wav' remapped 'res://assets/audio/pulse.wav' at thread -1
+Loading resource: res://assets/audio/evidence.wav remapped: res://assets/audio/evidence.wav
+Loading resource: res://.godot/imported/evidence.wav-6a1ce61007802e420f45f4d37a80612e.sample remapped: res://.godot/imported/evidence.wav-6a1ce61007802e420f45f4d37a80612e.sample
+Completed load for: 'res://assets/audio/evidence.wav' remapped 'res://assets/audio/evidence.wav' at thread -1
+Loading resource: res://assets/audio/impact.wav remapped: res://assets/audio/impact.wav
+Loading resource: res://.godot/imported/impact.wav-69c408f3f3e73daf7c3030beaa0507af.sample remapped: res://.godot/imported/impact.wav-69c408f3f3e73daf7c3030beaa0507af.sample
+Completed load for: 'res://assets/audio/impact.wav' remapped 'res://assets/audio/impact.wav' at thread -1
+Loading resource: res://assets/audio/change.wav remapped: res://assets/audio/change.wav
+Loading resource: res://.godot/imported/change.wav-06ec101e2f498926eccc69cb39f774d6.sample remapped: res://.godot/imported/change.wav-06ec101e2f498926eccc69cb39f774d6.sample
+Completed load for: 'res://assets/audio/change.wav' remapped 'res://assets/audio/change.wav' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Loading resource: res://scripts/start.gd remapped: res://scripts/start.gd
+Loading resource: res://assets/ui/title_art.png remapped: res://assets/ui/title_art.png
+Loading resource: res://.godot/imported/title_art.png-4f3a3fc727d10b01830a2a1ad6478441.ctex remapped: res://.godot/imported/title_art.png-4f3a3fc727d10b01830a2a1ad6478441.ctex
+Completed load for: 'res://assets/ui/title_art.png' remapped 'res://assets/ui/title_art.png' at thread -1
+Completed load for: 'res://scripts/start.gd' remapped 'res://scripts/start.gd' at thread -1
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+Loading resource: res://tests/playthrough.gd remapped: res://tests/playthrough.gd
+Completed load for: 'res://tests/playthrough.gd' remapped 'res://tests/playthrough.gd' at thread -1
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Loading resource: res://scripts/mind_map.gd remapped: res://scripts/mind_map.gd
+Completed load for: 'res://scripts/mind_map.gd' remapped 'res://scripts/mind_map.gd' at thread -1
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Loading resource: res://scripts/memory_dinner.gd remapped: res://scripts/memory_dinner.gd
+Completed load for: 'res://scripts/memory_dinner.gd' remapped 'res://scripts/memory_dinner.gd' at thread -1
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/seed_lab.tscn remapped: res://scenes/seed_lab.tscn
+Loading resource: res://scripts/seed_lab.gd remapped: res://scripts/seed_lab.gd
+Completed load for: 'res://scripts/seed_lab.gd' remapped 'res://scripts/seed_lab.gd' at thread -1
+Completed load for: 'res://scenes/seed_lab.tscn' remapped 'res://scenes/seed_lab.tscn' at thread -1
+Loading resource: res://scenes/ending.tscn remapped: res://scenes/ending.tscn
+Loading resource: res://scripts/ending.gd remapped: res://scripts/ending.gd
+Completed load for: 'res://scripts/ending.gd' remapped 'res://scripts/ending.gd' at thread -1
+Completed load for: 'res://scenes/ending.tscn' remapped 'res://scenes/ending.tscn' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+PLAYTHROUGH_ROUND_1_PASS: accept
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/seed_lab.tscn remapped: res://scenes/seed_lab.tscn
+Completed load for: 'res://scenes/seed_lab.tscn' remapped 'res://scenes/seed_lab.tscn' at thread -1
+Loading resource: res://scenes/ending.tscn remapped: res://scenes/ending.tscn
+Completed load for: 'res://scenes/ending.tscn' remapped 'res://scenes/ending.tscn' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+PLAYTHROUGH_ROUND_2_PASS: revise
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/seed_lab.tscn remapped: res://scenes/seed_lab.tscn
+Completed load for: 'res://scenes/seed_lab.tscn' remapped 'res://scenes/seed_lab.tscn' at thread -1
+Loading resource: res://scenes/ending.tscn remapped: res://scenes/ending.tscn
+Completed load for: 'res://scenes/ending.tscn' remapped 'res://scenes/ending.tscn' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+PLAYTHROUGH_ROUND_3_PASS: hold
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/seed_lab.tscn remapped: res://scenes/seed_lab.tscn
+Completed load for: 'res://scenes/seed_lab.tscn' remapped 'res://scenes/seed_lab.tscn' at thread -1
+Loading resource: res://scenes/ending.tscn remapped: res://scenes/ending.tscn
+Completed load for: 'res://scenes/ending.tscn' remapped 'res://scenes/ending.tscn' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+PLAYTHROUGH_ROUND_4_PASS: accept
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/seed_lab.tscn remapped: res://scenes/seed_lab.tscn
+Completed load for: 'res://scenes/seed_lab.tscn' remapped 'res://scenes/seed_lab.tscn' at thread -1
+Loading resource: res://scenes/ending.tscn remapped: res://scenes/ending.tscn
+Completed load for: 'res://scenes/ending.tscn' remapped 'res://scenes/ending.tscn' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+PLAYTHROUGH_ROUND_5_PASS: hold
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/mind_map.tscn remapped: res://scenes/mind_map.tscn
+Completed load for: 'res://scenes/mind_map.tscn' remapped 'res://scenes/mind_map.tscn' at thread -1
+Loading resource: res://scenes/memory_dinner.tscn remapped: res://scenes/memory_dinner.tscn
+Completed load for: 'res://scenes/memory_dinner.tscn' remapped 'res://scenes/memory_dinner.tscn' at thread -1
+Loading resource: res://scenes/start.tscn remapped: res://scenes/start.tscn
+Completed load for: 'res://scenes/start.tscn' remapped 'res://scenes/start.tscn' at thread -1
+PLAYTHROUGH_PASS: 5 complete scene journeys; accept/revise/hold; one resubmit; 60 characters; F2 reset; 3 interruptions and grey evidence recovery. Real seconds: 87.4
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372064889505256 - Reference count: 1
+Leaked instance: OggPacketSequencePlayback:9223372064906282474 - Reference count: 1
+Leaked instance: OggPacketSequence:9223372064805619179 - Reference count: 3
+Leaked instance: AudioStreamOggVorbis:9223372064822396396 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372065275381236 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372065476707831 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372219994867368 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372220011644710 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/audio/ambience.ogg::OggPacketSequence_4j8vh (OggPacketSequence)
+Resource still in use: res://assets/audio/ambience.ogg (AudioStreamOggVorbis)
+Resource still in use: res://assets/audio/pulse.wav (AudioStreamWAV)
+Resource still in use: res://assets/audio/evidence.wav (AudioStreamWAV)
+Orphan StringName: Master (static: 0, total: 6)
+StringName: 1 unclaimed string names at exit.

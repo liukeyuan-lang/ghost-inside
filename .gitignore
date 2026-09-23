@@ -1,0 +1,6 @@
+game/.godot/
+game/builds/
+tools/templates/
+tools/*.zip
+portable_check/
+*.zip

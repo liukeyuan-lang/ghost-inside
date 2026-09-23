@@ -1,0 +1,6 @@
+[
+  {"name":"play_scene","arguments":{"mode":"main"}},
+  {"wait_ms":2500},
+  {"name":"get_game_screenshot"},
+  {"name":"get_game_scene_tree","arguments":{"max_depth":2}}
+]
