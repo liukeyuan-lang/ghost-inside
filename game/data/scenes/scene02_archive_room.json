@@ -384,6 +384,9 @@
     "外部影响": "安全、稳定",
     "强制行为": "未发现"
   },
+  "evidence_writes": [
+    "F03"
+  ],
   "map_platform_todo": [
     "产出三层背景与两张频段覆盖层",
     "为 O21–O29 绘制 obj sprite 并微调 pos/size",

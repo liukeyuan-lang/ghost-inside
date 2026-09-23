@@ -485,6 +485,11 @@
         "O5B",
         "O5C"
       ],
+      "initial_items": [
+        "O5A",
+        "O5B",
+        "O5C"
+      ],
       "requires_flags": [
         "f52_mirror"
       ],
@@ -527,6 +532,9 @@
     "首次直接询问": "无法回答",
     "异常触发": "自我意愿识别失败"
   },
+  "evidence_writes": [
+    "F02"
+  ],
   "map_platform_todo": [
     "产出夜色卧室背景、记忆镜与两张频段覆盖层",
     "台灯三角度光层（lamp_light）或与工程侧确认用代码旋转实现",
