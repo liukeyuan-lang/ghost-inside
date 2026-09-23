@@ -1,0 +1,30 @@
+# Godot generated data
+.godot/
+**/.godot/
+builds/
+**/builds/
+artifacts/
+portable_check/
+
+# Local tooling and archives
+tools/templates/
+tools/*.zip
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.vs/
+*.code-workspace
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+*.swp
+*.swo
+*~
+
+# Environment files (keep the example template)
+.env*
+!.env.example
