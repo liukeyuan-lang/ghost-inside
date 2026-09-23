@@ -17,6 +17,8 @@ var demo_mode := false
 var online_mode := false
 var interruptions := 0
 var trace: Array[String] = []
+var case_flags: Dictionary = {}
+var will_dossier: Dictionary = {}
 
 func _ready() -> void:
 	var raw = JSON.parse_string(FileAccess.get_file_as_string("res://data/cases/white_corridor.json"))
@@ -25,7 +27,7 @@ func _ready() -> void:
 	else:
 		load_error = "案例文件缺失或格式错误，无法建立连接。"
 	reset_case()
-	var keys := {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT], "move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN], "interact": [KEY_E, KEY_ENTER], "pulse": [KEY_SPACE], "restart": [KEY_F2]}
+	var keys := {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT], "move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN], "interact": [KEY_E, KEY_ENTER], "pulse": [KEY_SPACE], "vision": [KEY_Q], "restart": [KEY_F2]}
 	for action in keys:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -51,6 +53,8 @@ func reset_case() -> void:
 	offline = true
 	interruptions = 0
 	trace.clear()
+	case_flags.clear()
+	will_dossier.clear()
 
 func unlock_evidence(id: String) -> void:
 	evidence[id] = true

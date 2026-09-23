@@ -61,6 +61,6 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func self_test() -> void:
-	var runner: Node = load("res://tests/playthrough.gd").new()
-	add_child(runner)
-	runner.run(self)
+	var runner: Node = load("res://tests/six_scene_export_runner.gd").new()
+	get_tree().root.add_child(runner)
+	runner.call("start", self)
