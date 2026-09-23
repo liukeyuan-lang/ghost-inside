@@ -40,8 +40,8 @@
       "tag": "bg_back",
       "band": "all",
       "depth": "back",
-      "asset": "res://assets/scenes/scene03/bg_back.png",
-      "status": "地图平台产出"
+      "asset": "res://assets/scenes/scene03/bg_generated.png",
+      "status": "已生成并接入固定镜头背景"
     },
     {
       "tag": "bg_mid",
@@ -215,6 +215,7 @@
         "requires_flags": [
           "f31_modules"
         ],
+        "requires_band": "fact",
         "writes_flag": "f32_override_reverted",
         "text": "事实层显示 ENDING 被 Medical_Application 覆盖。你撤销了覆盖操作，最后的项目日志恢复：存储空间不足，是否封存 Dream_Project——林澈输入 Need a better future，确认。日志：执行人 Lin Che。"
       },
@@ -342,6 +343,9 @@
     "被放弃可能": "游戏创作",
     "执行理由": "更好的未来"
   },
+  "evidence_writes": [
+    "F01"
+  ],
   "map_platform_todo": [
     "产出三层背景与两张频段覆盖层",
     "为 O31–O37 绘制 obj sprite 并微调 pos/size",

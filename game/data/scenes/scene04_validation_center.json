@@ -244,6 +244,7 @@
         "requires_flags": [
           "f41_public"
         ],
+        "requires_band": "emotion",
         "writes_flag": "f45_drawer_open",
         "text": "情绪层里传来一声相机快门，声音来自桌内。你拉开了抽屉，里面是一组摄影作品。"
       },
@@ -269,6 +270,11 @@
       ],
       "takeable": true,
       "slot_group": "sim_linyu_hidden",
+      "visible_requires": {
+        "flags": [
+          "f45_drawer_open"
+        ]
+      },
       "tendency": "exploration"
     },
     {
@@ -291,6 +297,14 @@
       ],
       "takeable": true,
       "slot_group": "sim_chenmo",
+      "conditional_interact": {
+        "requires_flags": [
+          "f42_partial"
+        ],
+        "requires_band": "fact",
+        "writes_flag": "f48_hidden_read",
+        "text": "通知背面的新公司入职邀请显影。失败结束了工作室，却没有结束人生。"
+      },
       "tendency": "exploration"
     },
     {
@@ -531,6 +545,9 @@
     "失败结果": "不能证明错误",
     "选择理由": "仍空白"
   },
+  "evidence_writes": [
+    "B02"
+  ],
   "map_platform_todo": [
     "产出对称双区背景（左办公室/右工作室）与两张频段覆盖层",
     "为 O41–O4B 绘制 obj sprite 并微调 pos/size",

@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SIX_SCENE_ROUND_1_PASS report=responsibility
+SIX_SCENE_ROUND_2_PASS report=exploration
+SIX_SCENE_ROUND_3_PASS report=balance
+SIX_SCENE_ROUND_4_PASS report=responsibility
+SIX_SCENE_ROUND_5_PASS report=exploration
+PLAYTHROUGH_PASS: six scenes completed 5 times; six puzzle types; three bands; evidence chain; fixed ending; reset. Real seconds: 5.76

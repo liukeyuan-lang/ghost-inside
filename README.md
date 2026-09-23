@@ -1,6 +1,6 @@
 # Ghost Inside · 案例 001 六关版
 
-使用 Godot 4.7.2 Stable 打开 `game/project.godot`，按 F5 运行。Windows 独立版为 `game/builds/windows/GhostInside_SixScenes.exe`。画面为 1280×720 横屏，使用 Compatibility。无需网络。
+使用 Godot 4.7.2 Stable 打开 `game/project.godot`，按 F5 运行。画面为 1280×720 横屏，使用 Compatibility。无需网络。本机已导出 `game/builds/windows/GhostInside_SixScenes.exe`；Git 仓库依照 `.gitignore` 不包含构建文件，从 Git 获取工程后可在 Godot 中选择 Windows Desktop 重新导出。
 
 ## 操作
 

@@ -30,10 +30,14 @@ func go(next: String) -> void:
 		remove_child(current)
 		current.queue_free()
 	GameState.stage = next
-	current = load("res://scenes/%s.tscn" % next).instantiate()
+	var scene_path := "res://scenes/%s.tscn" % next
+	if next.begins_with("scene0"):
+		GameState.current_scene_id = next
+		scene_path = "res://scenes/investigation.tscn"
+	current = load(scene_path).instantiate()
 	add_child(current)
 	if is_instance_valid(music):
-		music.volume_db = -30 if next in ["memory_dinner", "ending"] else -24
+		music.volume_db = -30 if next in ["scene05_brother_room", "scene06_surgery_room", "final_report"] else -24
 
 func sound(cue: String) -> void:
 	if sounds.has(cue):

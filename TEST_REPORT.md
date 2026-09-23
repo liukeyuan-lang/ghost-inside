@@ -17,6 +17,6 @@
 
 源工程测试入口：`game/tests/six_scene_playthrough.gd`、`white_corridor_smoke.gd`、`archive_room_smoke.gd`。Windows 独立版在 `artifacts` 目录中以 `--headless -- --self-test` 运行，输出记录见 `artifacts/export_self_test.out` 与 `.err`。五次自动试玩逐关完成，覆盖错误照片顺序、未按 Q 寻找碎片、错误判断不授予封存权限、重开清空本次进度，并检查导出版本实际加载两张地图。测试属于程序模拟玩家操作，地图外观另由实际游戏画面截图核对。
 
-导出文件：`game/builds/windows/GhostInside_SixScenes.exe`。不依赖项目文件或网络。关卡 3—6 尚未配置独立的高精度 2.5D 背景；目前用现有角色素材和绘制场景。旧饭桌与认知种子内容不在当前主流程。在线模型未用于当前关卡判断。
+本机导出文件：`game/builds/windows/GhostInside_SixScenes.exe`。不依赖项目文件或网络；构建文件按 `.gitignore` 不上传 Git。关卡 3—6 尚未配置独立的高精度 2.5D 背景；目前用现有角色素材和绘制场景。旧饭桌与认知种子内容不在当前主流程。在线模型未用于当前关卡判断。
 
 自检结束时 Godot 输出对象清理提示；发生在测试主动退出之后，五次流程和退出码均正常。尚未在其他电脑型号上验证硬件兼容性。
