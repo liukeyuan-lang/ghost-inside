@@ -20,6 +20,10 @@ func run_all() -> void:
 		if state.get("stage") != "white_corridor":
 			fail_test("Start did not enter corridor")
 			return
+		room.call("complete_intro_for_test")
+		if room.get("intro_state") != room.IntroState.EXPLORE:
+			fail_test("White corridor intro did not unlock exploration")
+			return
 		room.call("set_player_for_test", room.get("BASES")[0])
 		room.call("interact", 0)
 		room.call("set_player_for_test", room.get("BASES")[1])
@@ -28,10 +32,20 @@ func run_all() -> void:
 			fail_test("Q gate failed")
 			return
 		room.set("vision", true)
-		for station in [1, 2, 3, 4]:
-			room.call("set_player_for_test", room.get("BASES")[station])
-			for phase_index in range(3):
-				room.call("interact", station)
+		room.call("set_player_for_test", room.get("BASES")[1])
+		room.call("interact", 1)
+		room.evidence_layer._advance(); room.evidence_layer._confirm()
+		room.call("set_player_for_test", room.get("BASES")[2])
+		room.call("interact", 2)
+		room.evidence_layer._advance(); room.evidence_layer._confirm()
+		room.call("set_player_for_test", room.get("BASES")[3])
+		room.call("interact", 3)
+		room.evidence_layer._advance(); room.evidence_layer._confirm()
+		room.call("_on_evidence_choice", "age18_choice", "external")
+		room.call("set_player_for_test", room.get("BASES")[4])
+		room.call("interact", 4)
+		room.evidence_layer._advance(); room.evidence_layer._confirm()
+		room.call("_on_evidence_choice", "age22_choice", "remove")
 		room.call("set_player_for_test", room.get("BASES")[6])
 		room.call("interact", 6)
 		await process_frame
@@ -45,8 +59,9 @@ func run_all() -> void:
 			return
 		for name in ["父亲参加乐队", "父亲收起吉他", "林澈参加游戏比赛", "林澈填写医学志愿"]:
 			room.call("_choose_photo", name)
-		for index in range(3):
-			room.call("_take_anchor", index)
+		for name in ["比赛报名表", "医学院宣传册", "旧吉他拨片"]:
+			room.call("inspect_archive_evidence", name)
+			room.evidence_layer._advance(); room.evidence_layer._confirm()
 		room.call("_choose_dialogue", true)
 		room.call("_choose_dialogue", true)
 		for name in ["放弃梦想", "恐惧风险", "保护与限制", "推迟选择", "无法确认意愿"]:

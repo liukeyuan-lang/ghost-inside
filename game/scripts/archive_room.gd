@@ -1,4 +1,5 @@
 extends "res://scripts/view.gd"
+const EvidenceInspect = preload("res://scripts/evidence_inspect_layer.gd")
 
 const ANCHORS := ["比赛报名表", "医学院宣传册", "旧吉他拨片"]
 const ANCHOR_NOTES := [
@@ -30,6 +31,7 @@ var modal_content: Control
 var background: Texture2D
 var modal_feedback := ""
 var modal_choice_count := 0
+var evidence_layer
 
 func _ready() -> void:
 	var stored: Variant = GameState.get("case_flags")
@@ -50,8 +52,43 @@ func _ready() -> void:
 		station_buttons.append(b)
 	progress = label_at("", Vector2(48, 132), Vector2(1180, 35), 20, CYAN)
 	narration = label_at("Ghost：时间顺序能说明发生过什么，不能单独说明谁替谁决定。", Vector2(64, 571), Vector2(1148, 68), 21, PAPER)
+	comic_dialogue.show_line("Ghost", "时间顺序能说明发生过什么，不能单独说明谁替谁决定。")
 	hint = label_at("WASD / 方向键移动，靠近后按 E / Enter；也可点击场景中的设施。", Vector2(64, 651), Vector2(1150, 39), 18, CYAN)
 	_create_modal()
+	_create_evidence_layer()
+	_refresh()
+
+func _create_evidence_layer() -> void:
+	evidence_layer = EvidenceInspect.new()
+	evidence_layer.name = "EvidenceInspectLayer"
+	ui.add_child(evidence_layer)
+	evidence_layer.confirmed.connect(_archive_evidence_confirmed)
+
+func _archive_texture(index: int) -> Texture2D:
+	var source := load("res://assets/props/white_corridor/evidence_atlas.png") as Texture2D
+	var atlas := AtlasTexture.new()
+	atlas.atlas = source
+	atlas.region = Rect2(543 * (index % 4), 0, 543, 724)
+	return atlas
+
+func inspect_archive_evidence(kind: String) -> void:
+	var data := {
+		"photo": [0, "照片时间线", "相片放大后可见人物年龄、父亲的婚戒与吉他上的积灰。", "【照片观察】\n父亲乐队照：年轻、未戴婚戒，吉他无灰。\n父亲收起吉他：婚戒出现，琴盒积灰。\n林澈比赛照：少年身高，报名表折角可见。\n医学志愿照：成年笔迹。\n这些线索帮助排序，不替任何人确认意愿。", "年龄 / 婚戒 / 积灰是排序线索"],
+		"比赛报名表": [1, "比赛报名表", "报名表折在通知书下面。先移开上层纸张。", "【游戏创作比赛报名表】\n报名人：林澈\n项目：青少年游戏创作比赛\n手写：\"如果这次能进决赛，\n我就认真考虑做游戏。\"\n\n报名费由林澈自己攒下。\n它证明投入，不替他填职业答案。", "通知书压住 → 移开 → 报名表展开"],
+		"医学院宣传册": [2, "医学院宣传册", "宣传册夹着父亲带回来的便签。展开阅读外部来源。", "【医学院宣传册】\n父亲便签：\"这条路稳一点，你不用像我那样冒险。\"\n\n来源：父亲。\n它说明保护和期待同时存在；没有林澈自己的原始意愿声明。", "宣传册展开后可见来源与缺失项"],
+		"旧吉他拨片": [3, "旧吉他拨片", "拨片放大后可以翻到背面。", "【旧吉他拨片 / 背面】\n刻字：L.C. 乐队 2001\n边缘磨损，琴盒内积灰。\n\n它属于父亲，记录他曾把喜欢的事收进箱子；不能据此替林澈作决定。", "近景 + 背面刻字"],
+	}
+	if not data.has(kind):
+		return
+	var item: Array = data[kind]
+	var texture := load("res://assets/props/archive_room/old_guitar_pick.png") as Texture2D if kind == "旧吉他拨片" else _archive_texture(int(item[0]))
+	evidence_layer.inspect("archive_" + kind, texture, str(item[1]), str(item[2]), str(item[3]), str(item[4]), true)
+
+func _archive_evidence_confirmed(id: String) -> void:
+	if id.begins_with("archive_"):
+		var kind := id.trim_prefix("archive_")
+		if kind in ANCHORS:
+			_take_anchor(ANCHORS.find(kind), true)
 	_refresh()
 
 func _create_modal() -> void:
@@ -78,6 +115,10 @@ func _create_modal() -> void:
 	modal_content.size = Vector2(808, 418)
 	modal.add_child(modal_content)
 	modal.visible = false
+
+func _say_comic(line: String, speaker := "Ghost") -> void:
+	narration.text = speaker + "：" + line
+	comic_dialogue.show_line(speaker, line)
 
 func _clear_modal() -> void:
 	for child in modal_content.get_children():
@@ -158,6 +199,8 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if evidence_layer and evidence_layer.visible:
+		return
 	if event.is_action_pressed("interact"):
 		if modal.visible:
 			var focused := get_viewport().gui_get_focus_owner()
@@ -190,6 +233,7 @@ func _show_timeline() -> void:
 	for i in range(PHOTO_SHUFFLED.size()):
 		var value: String = PHOTO_SHUFFLED[i]
 		_modal_button(value, Vector2(22 + (i % 2) * 389, 166 + (i / 2) * 79), Vector2(366, 62), _choose_photo.bind(value))
+	_modal_button("查看照片物证特写", Vector2(430, 332), Vector2(330, 42), func(): inspect_archive_evidence("photo"))
 
 func _choose_photo(value: String) -> void:
 	var count := int(flags.get("scene02_photo_count", 0))
@@ -197,7 +241,7 @@ func _choose_photo(value: String) -> void:
 		var clue := "照片出现矛盾：吉他先积灰后崭新，或林澈的身高忽然倒退。检查这张照片属于哪个时期。"
 		if value == "林澈填写医学志愿" and count == 0:
 			clue = "志愿表上的笔迹属于成年的林澈。此时父亲的吉他早已收起。"
-		narration.text = "Ghost：" + clue
+		_say_comic(clue)
 		modal_feedback = "日期或场景不符；观察吉他的灰尘与人物年龄。"
 		_show_timeline()
 		return
@@ -207,7 +251,7 @@ func _choose_photo(value: String) -> void:
 	get_parent().sound("evidence")
 	if count >= PHOTO_ORDER.size():
 		flags["scene02_timeline"] = true
-		narration.text = "Ghost：时间顺序已经成立。它记录了父亲和林澈各自经历过什么。"
+		_say_comic("时间顺序已经成立。它记录了父亲和林澈各自经历过什么。")
 	_show_timeline()
 	_refresh()
 
@@ -218,17 +262,20 @@ func _show_anchors() -> void:
 	_modal_title("记忆锚点 · %d / 3" % anchors.size(), "将比赛报名表、医学院宣传册、旧吉他拨片放入对应记忆。三件必须齐全。")
 	for i in range(ANCHORS.size()):
 		var name: String = ANCHORS[i]
-		_modal_button(("✓ " if name in anchors else "＋ ") + name, Vector2(22, 165 + i * 64), Vector2(340, 52), _take_anchor.bind(i))
+		_modal_button(("✓ " if name in anchors else "＋ ") + name, Vector2(22, 165 + i * 64), Vector2(340, 52), func(): inspect_archive_evidence(name))
 		_modal_label(ANCHOR_NOTES[i], Vector2(380, 167 + i * 64), Vector2(395, 53), 16, MUTED)
 
-func _take_anchor(index: int) -> void:
+func _take_anchor(index: int, inspected := false) -> void:
+	if not inspected:
+		inspect_archive_evidence(ANCHORS[index])
+		return
 	var name: String = ANCHORS[index]
 	if name not in anchors:
 		anchors.append(name)
 		flags["scene02_anchor_ids"] = anchors
 		GameState.unlock_evidence(["F01", "F02", "F03"][index])
 		get_parent().sound("evidence")
-		narration.text = "Ghost：%s。它是记忆锚点，不是替林澈填写的答案。" % name
+		_say_comic("%s。它是记忆锚点，不是替林澈填写的答案。" % name)
 	_show_anchors()
 	_refresh()
 
@@ -238,20 +285,23 @@ func _show_dialogue() -> void:
 		return
 	if flags.get("scene02_dialogue", false):
 		_modal_title("父子对话 · 已修复", "已说出口：父亲谈到人生的风险；林澈说“我知道”。\n推测 / 待确认：父亲也许怕儿子承担自己曾经历的失落；林澈也许不敢说仍想继续游戏。")
+		comic_dialogue.show_line("Ghost", "已说出口的话被恢复了；没有说出口的部分仍然只能保留为可能。")
 		return
 	var part := int(flags.get("scene02_dialogue_part", 0))
 	if part == 0:
 		_modal_title("父亲的停顿 · 第 1 / 2 句", "已说出口：父亲说“喜欢可以……但是人生……”\n请从物证推测他没说完的话。推测不能写成事实。")
+		comic_dialogue.show_line("林父", "喜欢可以……但是人生……")
 		_modal_button("也许他怕儿子承担自己经历过的风险（推测）", Vector2(22, 185), Vector2(750, 65), _choose_dialogue.bind(true))
 		_modal_button("他明确说过：游戏一文不值（当作事实）", Vector2(22, 270), Vector2(750, 65), _choose_dialogue.bind(false))
 	else:
 		_modal_title("林澈的沉默 · 第 2 / 2 句", "已说出口：林澈说“我知道”。报名表折角仍在。\n未说出口的部分只能保留为可能性。")
+		comic_dialogue.show_line("林澈", "我知道。")
 		_modal_button("他也许仍想继续做游戏，却暂时不敢表达（推测）", Vector2(22, 185), Vector2(750, 65), _choose_dialogue.bind(true))
 		_modal_button("他已经决定放弃游戏，并完全认同父亲（当作事实）", Vector2(22, 270), Vector2(750, 65), _choose_dialogue.bind(false))
 
 func _choose_dialogue(valid: bool) -> void:
 	if not valid:
-		narration.text = "Ghost：物证没有记录这句话。未说出口的内容是可能性，不能伪装成事实。"
+		_say_comic("物证没有记录这句话。未说出口的内容是可能性，不能伪装成事实。")
 		modal_feedback = "没有物证支持这句断言；请保留为推测。"
 		_show_dialogue()
 		return
@@ -261,7 +311,7 @@ func _choose_dialogue(valid: bool) -> void:
 	get_parent().sound("evidence")
 	if part >= 2:
 		flags["scene02_dialogue"] = true
-		narration.text = "Ghost：父亲的保护与限制可能并存。林澈的沉默仍须由林澈自己解释。"
+		_say_comic("父亲的保护与限制可能并存。林澈的沉默仍须由林澈自己解释。")
 	_show_dialogue()
 	_refresh()
 
@@ -281,7 +331,7 @@ func _show_causal() -> void:
 func _choose_cause(value: String) -> void:
 	var count := int(flags.get("scene02_causal_count", 0))
 	if value != CAUSAL_ORDER[count]:
-		narration.text = "Ghost：因果不能从结果倒推。前 %d 段已经确认，只撤回这张冲突卡。" % count
+		_say_comic("因果不能从结果倒推。前 %d 段已经确认，只撤回这张冲突卡。" % count)
 		modal_feedback = "因果不能从结果倒推；已确认的前段保留。"
 		_show_causal()
 		return
@@ -289,7 +339,7 @@ func _choose_cause(value: String) -> void:
 	flags["scene02_causal_count"] = count + 1
 	get_parent().sound("evidence")
 	if count + 1 >= CAUSAL_ORDER.size():
-		narration.text = "Ghost：影响链成立。但父亲影响了林澈，不代表父亲替他作出了全部决定。"
+		_say_comic("影响链成立。但父亲影响了林澈，不代表父亲替他作出了全部决定。")
 	_show_causal()
 	_refresh()
 
@@ -303,15 +353,15 @@ func _show_terminal() -> void:
 		_modal_button("父亲决定了林澈的一切", Vector2(22, 263), Vector2(750, 66), _choose_judgment.bind(false))
 		return
 	if not flags.get("scene02_complete", false):
-		_modal_title("封存权限 · 已获得", "封存不是遗忘；它是停止让伪造结论冒充当事人的声音。\n可封存：系统伪造结论及强制写入。不可删除：父亲、恐惧、医学可能性或林澈的记忆。")
-		_modal_button("仅封存伪造结论", Vector2(22, 260), Vector2(750, 72), _seal_false_conclusion)
+		_modal_title("封存权限 · 已获得", "封存不是遗忘；它是停止让无原始记录的系统摘要冒充当事人的声音。\n可封存：系统摘要及强制写入。不可删除：父亲、恐惧、医学可能性或林澈的记忆。")
+		_modal_button("仅封存无原始记录摘要", Vector2(22, 260), Vector2(750, 72), _seal_false_conclusion)
 		return
-	_modal_title("伪造结论 · 已封存", "父亲的影响已确认；林澈的真实意愿仍待他自己表达。\n下一处：废弃游戏工作室。")
+	_modal_title("系统摘要 · 已封存", "父亲的影响已确认；林澈的真实意愿仍待他自己表达。\n下一处：废弃游戏工作室。")
 	_modal_button("进入废弃游戏工作室", Vector2(22, 264), Vector2(750, 70), func(): goto_scene("studio_room"))
 
 func _choose_judgment(valid: bool) -> void:
 	if not valid:
-		narration.text = "Ghost：你找到了影响，但还没有证明决定。保护和限制可以同时为真，却不能替代林澈的意愿记录。"
+		_say_comic("你找到了影响，但还没有证明决定。保护和限制可以同时为真，却不能替代林澈的意愿记录。")
 		modal_feedback = "影响、保护和限制可同时为真，却不足以替林澈决定。"
 		_show_terminal()
 		return
@@ -323,7 +373,7 @@ func _choose_judgment(valid: bool) -> void:
 	if dossier is Dictionary:
 		dossier["外部影响"] = "父亲希望降低风险，同时限制了表达"
 		dossier["封存范围"] = "仅伪造结论与强制写入"
-		narration.text = "Ghost：权限已取得。现在只能封存伪造结论，不能删除人或记忆。"
+		_say_comic("权限已取得。接下来只处理无原始记录的系统摘要；哪些话属于林澈仍须由记录回答。")
 	_show_terminal()
 	_refresh()
 
@@ -333,7 +383,7 @@ func _seal_false_conclusion() -> void:
 	if dossier is Dictionary:
 		dossier["强制行为"] = "未发现"
 	get_parent().sound("change")
-	narration.text = "Ghost：伪造结论已封存。职业、父亲的回应与梦想状态仍未被替答。"
+	_say_comic("无原始记录的系统摘要已封存。职业、父亲的回应与梦想状态仍未被替答。")
 	_show_terminal()
 	_refresh()
 

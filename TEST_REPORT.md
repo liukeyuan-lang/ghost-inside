@@ -14,8 +14,9 @@
 | Windows 独立版连续五次完整自动试玩 | 通过，SIX_SCENE_FIVE_RUNS_PASS |
 | Windows 版从工程外目录启动 | 通过，退出码 0 |
 | 前两关实际地图截图检查 | 通过，见 artifacts/qa_white_corridor.png、qa_archive_room.png、qa_white_corridor_vision.png、qa_archive_room_puzzle.png |
+| 15 岁物证展开阅读、22 岁玩家判断、档案室拨片背面特写 | 通过，见 qa_white_corridor_evidence15.png、qa_white_corridor_evidence22_choice.png、qa_archive_room_evidence_pick.png |
 
-源工程测试入口：`game/tests/six_scene_playthrough.gd`、`white_corridor_smoke.gd`、`archive_room_smoke.gd`。Windows 独立版在 `artifacts` 目录中以 `--headless -- --self-test` 运行，输出记录见 `artifacts/export_self_test.out` 与 `.err`。五次自动试玩逐关完成，覆盖错误照片顺序、未按 Q 寻找碎片、错误判断不授予封存权限、重开清空本次进度，并检查导出版本实际加载两张地图。测试属于程序模拟玩家操作，地图外观另由实际游戏画面截图核对。
+源工程测试入口：`game/tests/six_scene_playthrough.gd`、`white_corridor_smoke.gd`、`archive_room_smoke.gd`。本轮以 Godot 4.7.2 从源工程运行三项测试：走廊 smoke、档案室 smoke、完整六关五轮试玩均通过。新的 smoke 流程经由 EvidenceInspectLayer 的“展开／确认”和真实选项回调推进，明确检查 15 岁不能跳过展开、18／22 选错不可推进、照片和三种档案物证可以打开。测试属于程序模拟玩家操作，地图外观另由实际游戏画面截图核对。
 
 本机导出文件：`game/builds/windows/GhostInside_SixScenes.exe`。不依赖项目文件或网络；构建文件按 `.gitignore` 不上传 Git。关卡 3—6 尚未配置独立的高精度 2.5D 背景；目前用现有角色素材和绘制场景。旧饭桌与认知种子内容不在当前主流程。在线模型未用于当前关卡判断。
 

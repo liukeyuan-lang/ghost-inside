@@ -9,6 +9,7 @@ const GOLD := Color("efbc76")
 const RED := Color("ee7e89")
 const AMBER := Color("e9a85f")
 var ui: Control
+var comic_dialogue: ComicDialogueLayer
 var _character_cache: Dictionary = {}
 
 func setup(title: String, subtitle: String) -> void:
@@ -18,6 +19,9 @@ func setup(title: String, subtitle: String) -> void:
 	ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(ui)
+	comic_dialogue = ComicDialogueLayer.new()
+	comic_dialogue.name = "ComicDialogueLayer"
+	ui.add_child(comic_dialogue)
 	label_at(title, Vector2(40, 26), Vector2(950, 44), 32, PAPER)
 	label_at(subtitle, Vector2(42, 76), Vector2(1130, 38), 18, MUTED)
 	button_at("重开 F2", Vector2(1110, 20), Vector2(130, 56), func(): get_parent().restart())
