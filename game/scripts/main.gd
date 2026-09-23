@@ -30,10 +30,14 @@ func go(next: String) -> void:
 		remove_child(current)
 		current.queue_free()
 	GameState.stage = next
-	current = load("res://scenes/%s.tscn" % next).instantiate()
+	var scene_path := "res://scenes/%s.tscn" % next
+	if next.begins_with("scene0"):
+		GameState.current_scene_id = next
+		scene_path = "res://scenes/investigation.tscn"
+	current = load(scene_path).instantiate()
 	add_child(current)
 	if is_instance_valid(music):
-		music.volume_db = -30 if next in ["memory_dinner", "ending"] else -24
+		music.volume_db = -30 if next in ["scene05_brother_room", "scene06_surgery_room", "final_report"] else -24
 
 func sound(cue: String) -> void:
 	if sounds.has(cue):
@@ -43,10 +47,12 @@ func stop_audio_for_test() -> void:
 	if is_instance_valid(music):
 		music.stop()
 		music.stream = null
+		music.queue_free()
 	for audio in sounds.values():
 		if is_instance_valid(audio):
 			audio.stop()
 			audio.stream = null
+			audio.queue_free()
 	sounds.clear()
 
 func restart() -> void:
@@ -59,6 +65,6 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func self_test() -> void:
-	var runner: Node = load("res://tests/playthrough.gd").new()
-	add_child(runner)
-	runner.run(self)
+	var runner: Node = load("res://tests/six_scene_export_runner.gd").new()
+	get_tree().root.add_child(runner)
+	runner.call("start", self)

@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "schema_notes": "frequency_text 顺序固定为 [事实层, 情绪层, 期待层]。pos 为舞台区绝对像素坐标；角色 pos 为脚底中心，物件 pos 为视觉中心。",
+  "scene_id": "scene03_studio_room",
+  "tscn_target": "scene03_studio_room",
+  "title": "03 / 废弃游戏工作室",
+  "chapter_chip": {
+    "number": "B",
+    "title": "封存工作室"
+  },
+  "role": "puzzle_room",
+  "content_rect": [
+    40,
+    122,
+    1200,
+    438
+  ],
+  "camera": {
+    "mode": "fixed"
+  },
+  "spawn": {
+    "pos": [
+      140,
+      500
+    ],
+    "facing": "right"
+  },
+  "walkable": [
+    {
+      "rect": [
+        100,
+        400,
+        1080,
+        140
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "tag": "bg_back",
+      "band": "all",
+      "depth": "back",
+      "asset": "res://assets/scenes/scene03/bg_generated.png",
+      "status": "已生成并接入固定镜头背景"
+    },
+    {
+      "tag": "bg_mid",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/scenes/scene03/bg_mid.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "bg_front",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene03/bg_front.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_emotion",
+      "band": "emotion",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene03/overlay_emotion.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_expectation",
+      "band": "expectation",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene03/overlay_expectation.png",
+      "status": "地图平台产出"
+    }
+  ],
+  "band_style": {
+    "fact": {
+      "tint": [
+        0.66,
+        0.82,
+        0.86,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "emotion": {
+      "tint": [
+        0.55,
+        0.28,
+        0.3,
+        0.82
+      ],
+      "layers_visible": [
+        "overlay_emotion"
+      ]
+    },
+    "expectation": {
+      "tint": [
+        0.78,
+        0.83,
+        0.88,
+        0.86
+      ],
+      "layers_visible": [
+        "overlay_expectation"
+      ]
+    }
+  },
+  "npcs": [
+    {
+      "id": "N31",
+      "character": "沈舟",
+      "pos": [
+        1000,
+        470
+      ],
+      "height": 150,
+      "frozen": true,
+      "lines": [
+        "你小时候做游戏，不是因为已经决定成为游戏制作人。你只是喜欢做这件事时的自己。",
+        "是他自己按下去的。但一个决定由自己执行，不代表它完全不受别人影响。"
+      ],
+      "note": "记忆投影，半透明渲染"
+    }
+  ],
+  "objects": [
+    {
+      "id": "O31",
+      "name": "老电脑 Dream_Project",
+      "pos": [
+        420,
+        330
+      ],
+      "size": [
+        130,
+        100
+      ],
+      "interact_radius": 90,
+      "inspect_text": "Dream_Project，状态：无法启动。",
+      "frequency_text": [
+        "电脑型号很旧，使用痕迹很深。",
+        "键盘上WASD四个键磨得最亮。",
+        "屏幕角落贴着便利贴：总有一天。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O32",
+      "name": "模块 · WORLD",
+      "pos": [
+        640,
+        280
+      ],
+      "size": [
+        70,
+        70
+      ],
+      "interact_radius": 80,
+      "inspect_text": "星球世界的设计模块，接口完好。",
+      "frequency_text": [
+        "模块编号 WORLD-01。",
+        "边缘有反复插拔的磨损。",
+        "标签：幼稚的梦。"
+      ],
+      "takeable": true,
+      "slot_group": "module_rack",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O33",
+      "name": "模块 · CHARACTER",
+      "pos": [
+        720,
+        280
+      ],
+      "size": [
+        70,
+        70
+      ],
+      "interact_radius": 80,
+      "inspect_text": "纸板角色原型对应的模块。",
+      "frequency_text": [
+        "模块编号 CHARACTER-01。",
+        "里面存着一个总在等朋友的小星球居民。",
+        "标签：不切实际。"
+      ],
+      "takeable": true,
+      "slot_group": "module_rack",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O34",
+      "name": "模块 · ENDING",
+      "pos": [
+        800,
+        280
+      ],
+      "size": [
+        70,
+        70
+      ],
+      "interact_radius": 80,
+      "inspect_text": "结局模块，表面有一道划痕。",
+      "frequency_text": [
+        "模块编号 ENDING-01。",
+        "它比其他两个模块更凉。",
+        "标签上「结局」被「成本」划掉重写。"
+      ],
+      "hidden": {
+        "band": "fact",
+        "reveal": "ENDING 文件里有一句未完成说明：只要所有结局都还能重来，就不需要决定哪个结局是真的。"
+      },
+      "takeable": true,
+      "slot_group": "module_rack",
+      "conditional_interact": {
+        "requires_flags": [
+          "f31_modules"
+        ],
+        "requires_band": "fact",
+        "writes_flag": "f32_override_reverted",
+        "text": "事实层显示 ENDING 被 Medical_Application 覆盖。你撤销了覆盖操作，最后的项目日志恢复：存储空间不足，是否封存 Dream_Project——林澈输入 Need a better future，确认。日志：执行人 Lin Che。"
+      },
+      "tendency": "exploration"
+    },
+    {
+      "id": "O35",
+      "name": "小星球设计稿",
+      "pos": [
+        300,
+        280
+      ],
+      "size": [
+        90,
+        70
+      ],
+      "interact_radius": 80,
+      "inspect_text": "画满小星球和轨道的手稿，纸张已经发黄。",
+      "frequency_text": [
+        "共 27 页，按时间排序。",
+        "最后一页的星球画了一半。",
+        "稿纸边缘写着：能让孤独的人连接起来的世界。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O36",
+      "name": "纸板角色",
+      "pos": [
+        220,
+        380
+      ],
+      "size": [
+        60,
+        90
+      ],
+      "interact_radius": 80,
+      "inspect_text": "手工纸板角色，关节用图钉连接。",
+      "frequency_text": [
+        "制作于高中时期。",
+        "纸板边缘被摸得起了毛。",
+        "身上贴着便利贴：待改进 47 处。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O37",
+      "name": "医学志愿资料",
+      "pos": [
+        920,
+        350
+      ],
+      "size": [
+        80,
+        60
+      ],
+      "interact_radius": 80,
+      "inspect_text": "一摞医学院复习资料，压在项目模块箱旁边。",
+      "frequency_text": [
+        "资料是封存项目之后购买的。",
+        "翻开的那页有咖啡渍，读了很久。",
+        "封面被白色标签覆盖：正确的下一步。"
+      ],
+      "tendency": "responsibility"
+    }
+  ],
+  "slot_groups": [
+    {
+      "id": "module_rack",
+      "type": "sequence",
+      "pos": [
+        700,
+        180
+      ],
+      "slot_size": [
+        60,
+        60
+      ],
+      "slots": 3,
+      "accepts": [
+        "O32",
+        "O33",
+        "O34"
+      ],
+      "correct_order": [
+        "O32",
+        "O33",
+        "O34"
+      ],
+      "wrong_feedback": "系统报错：模块依赖不满足。设计稿记录了依赖关系 WORLD → CHARACTER → ENDING。",
+      "on_correct": "f31_modules",
+      "on_correct_story": "模块依次点亮，随后系统报错：ENDING 模块校验失败。"
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit_corridor",
+      "name": "返回走廊",
+      "rect": [
+        50,
+        390,
+        46,
+        150
+      ],
+      "target": "scene01_white_corridor",
+      "condition": "always"
+    }
+  ],
+  "flags_written": [
+    "f31_modules",
+    "f32_override_reverted"
+  ],
+  "completion": {
+    "all_of": [
+      "f31_modules",
+      "f32_override_reverted"
+    ],
+    "writes": [
+      "scene03_complete"
+    ],
+    "on_complete_story": "Ghost：选择执行人已确认。亲自执行，是否能证明医学就是他真正想要的道路？未来验证中心开启。"
+  },
+  "dossier_update": {
+    "执行人": "林澈",
+    "被放弃可能": "游戏创作",
+    "执行理由": "更好的未来"
+  },
+  "evidence_writes": [
+    "F01"
+  ],
+  "map_platform_todo": [
+    "产出三层背景与两张频段覆盖层",
+    "为 O31–O37 绘制 obj sprite 并微调 pos/size",
+    "画出模块插槽架（module_rack）的视觉位置",
+    "微调 walkable 与 exit rect"
+  ]
+}

@@ -1,0 +1,101 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started 项目初始化 (5 steps)
+[   0% ] first_scan_filesystem | 正在扫描文件结构……
+[  16% ] first_scan_filesystem | 正在加载全局类名……
+[  33% ] first_scan_filesystem | 正在校验 GDExtension……
+[  50% ] first_scan_filesystem | 正在创建自动加载脚本……
+[  66% ] first_scan_filesystem | 正在初始化插件……
+[  83% ] first_scan_filesystem | 正在启动文件扫描……
+[ DONE ] first_scan_filesystem
+
+[   0% ] savepack | Started 打包中 (102 steps)
+[   1% ] savepack | 正在保存文件：res://scripts/final_report.gdc
+[   3% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-e2cd3ad146e88a9ce40b77a5da0ea9b1-start.scn
+[   5% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-67c27bd8ccff59bbcd394b13bf23db78-investigation.scn
+[   7% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-1c2fb7c1d6183fa3ab91220561d900ee-final_report.scn
+[   9% ] savepack | 正在保存文件：res://data/scenes/scene06_surgery_room.json
+[  11% ] savepack | 正在保存文件：res://data/scenes/scene05_brother_room.json
+[  14% ] savepack | 正在保存文件：res://data/scenes/scene04_validation_center.json
+[  16% ] savepack | 正在保存文件：res://data/scenes/scene03_studio_room.json
+[  18% ] savepack | 正在保存文件：res://data/scenes/scene02_archive_room.json
+[  20% ] savepack | 正在保存文件：res://data/scenes/scene01_white_corridor.json
+[  22% ] savepack | 正在保存文件：res://data/maps/white_corridor_map.json
+[  24% ] savepack | 正在保存文件：res://data/cases/white_corridor.json
+[  27% ] savepack | 正在保存文件：res://autoload/game_state.gdc
+[  29% ] savepack | 正在保存文件：res://.godot/imported/title_art.png-4f3a3fc727d10b01830a2a1ad6478441.ctex
+[  29% ] savepack | 正在保存文件：res://assets/ui/title_art.png.import
+[  31% ] savepack | 正在保存文件：res://.godot/imported/background_2.png-ccb182d8bf1cdabd025980fcab4972f6.ctex
+[  31% ] savepack | 正在保存文件：res://assets/ui/starfield/background_2.png.import
+[  33% ] savepack | 正在保存文件：res://.godot/imported/background_1.png-a27ea812646a40cb88192cb20b2df401.ctex
+[  33% ] savepack | 正在保存文件：res://assets/ui/starfield/background_1.png.import
+[  34% ] savepack | 正在保存文件：res://.godot/imported/background_0.png-ddad6dd23facf1c8859e385e881a3548.ctex
+[  34% ] savepack | 正在保存文件：res://assets/ui/starfield/background_0.png.import
+[  36% ] savepack | 正在保存文件：res://.godot/imported/bg_generated.png-1e9be0f18c5f80000dc0dfa8c2093f77.ctex
+[  36% ] savepack | 正在保存文件：res://assets/scenes/scene03/bg_generated.png.import
+[  39% ] savepack | 正在保存文件：res://.godot/imported/office_terminal.png-75120d0acf82fbb1f7c1da3a70ae1175.ctex
+[  39% ] savepack | 正在保存文件：res://assets/map/office_terminal.png.import
+[  41% ] savepack | 正在保存文件：res://.godot/imported/office_carpet.png-fa3a3e04760f98223e961d08c8a1bf9b.ctex
+[  41% ] savepack | 正在保存文件：res://assets/map/office_carpet.png.import
+[  43% ] savepack | 正在保存文件：res://.godot/imported/fan_cage.png-a16419fdf5671261148af4dbad153ed6.ctex
+[  43% ] savepack | 正在保存文件：res://assets/map/fan_cage.png.import
+[  45% ] savepack | 正在保存文件：res://.godot/imported/city_front.png-d8edfa80ba9b407859df3dd2b93c263a.ctex
+[  45% ] savepack | 正在保存文件：res://assets/map/city_front.png.import
+[  47% ] savepack | 正在保存文件：res://.godot/imported/city_buildings.png-520b2b661ced40d96ebd7201ccac2fc8.ctex
+[  47% ] savepack | 正在保存文件：res://assets/map/city_buildings.png.import
+[  50% ] savepack | 正在保存文件：res://.godot/imported/city_back.png-d3d90b33588f5ab0aa042772ce8adc74.ctex
+[  50% ] savepack | 正在保存文件：res://assets/map/city_back.png.import
+[  52% ] savepack | 正在保存文件：res://.godot/imported/ark-pixel-12px-proportional-zh_cn.ttf-95d1a2d1bd637faa7f67315e5db49cf9.fontdata
+[  52% ] savepack | 正在保存文件：res://assets/fonts/ark-pixel-12px-proportional-zh_cn.ttf.import
+[  54% ] savepack | 正在保存文件：res://.godot/imported/陈默.png-a482449119fb1881516d29809ec3c084.ctex
+[  54% ] savepack | 正在保存文件：res://assets/characters/陈默.png.import
+[  56% ] savepack | 正在保存文件：res://.godot/imported/沈舟.png-70046339e5167ab3cf76822f8b7b5ba9.ctex
+[  56% ] savepack | 正在保存文件：res://assets/characters/沈舟.png.import
+[  58% ] savepack | 正在保存文件：res://.godot/imported/林远.png-b8441fa96aba147091d891f17d528748.ctex
+[  58% ] savepack | 正在保存文件：res://assets/characters/林远.png.import
+[  60% ] savepack | 正在保存文件：res://.godot/imported/林父.png-51cd3a24ef22f7f3c69a158cdd629750.ctex
+[  60% ] savepack | 正在保存文件：res://assets/characters/林父.png.import
+[  63% ] savepack | 正在保存文件：res://.godot/imported/林澈.png-3a4db8dfbbe5dc4e7bbdc39d69f9c080.ctex
+[  63% ] savepack | 正在保存文件：res://assets/characters/林澈.png.import
+[  65% ] savepack | 正在保存文件：res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn
+[  66% ] savepack | 正在保存文件：res://tests/playthrough.gdc
+[  68% ] savepack | 正在保存文件：res://scripts/view.gdc
+[  70% ] savepack | 正在保存文件：res://scripts/start.gdc
+[  72% ] savepack | 正在保存文件：res://scripts/main.gdc
+[  75% ] savepack | 正在保存文件：res://scripts/investigation.gdc
+[  77% ] savepack | 正在保存文件：res://.godot/imported/ambience.ogg-d71de00c831cf4cb724cc4936e6996d2.oggvorbisstr
+[  77% ] savepack | 正在保存文件：res://assets/audio/ambience.ogg.import
+[  79% ] savepack | 正在保存文件：res://.godot/imported/change.wav-06ec101e2f498926eccc69cb39f774d6.sample
+[  79% ] savepack | 正在保存文件：res://assets/audio/change.wav.import
+[  81% ] savepack | 正在保存文件：res://.godot/imported/evidence.wav-6a1ce61007802e420f45f4d37a80612e.sample
+[  81% ] savepack | 正在保存文件：res://assets/audio/evidence.wav.import
+[  83% ] savepack | 正在保存文件：res://.godot/imported/impact.wav-69c408f3f3e73daf7c3030beaa0507af.sample
+[  83% ] savepack | 正在保存文件：res://assets/audio/impact.wav.import
+[  85% ] savepack | 正在保存文件：res://.godot/imported/interact.wav-4b4811d5e78a55ceeb44839962a3ab6e.sample
+[  85% ] savepack | 正在保存文件：res://assets/audio/interact.wav.import
+[  88% ] savepack | 正在保存文件：res://.godot/imported/pulse.wav-2767f1702d87630aca6f39d522402577.sample
+[  88% ] savepack | 正在保存文件：res://assets/audio/pulse.wav.import
+[  90% ] savepack | 正在保存文件：res://.godot/imported/Ghost.png-1ec2ac1dd00dedf8c7222548a1dd7c89.ctex
+[  90% ] savepack | 正在保存文件：res://assets/characters/Ghost.png.import
+[  92% ] savepack | 正在保存文件：res://.godot/imported/心灵调理师.png-8cf08fe51ddbd49ffe74acc2400e8ee7.ctex
+[  92% ] savepack | 正在保存文件：res://assets/characters/心灵调理师.png.import
+[  94% ] savepack | 正在保存文件：res://.godot/imported/怪物.png-597b78432766ffd99301e5fdc556c17e.ctex
+[  94% ] savepack | 正在保存文件：res://assets/characters/怪物.png.import
+[  96% ] savepack | 正在保存文件：res://.godot/imported/林宇.png-a4ca73ce8aefa472dd5e5b8417ff5e85.ctex
+[  96% ] savepack | 正在保存文件：res://assets/characters/林宇.png.import
+[  96% ] savepack | 正在保存文件：res://scripts/final_report.gd.remap
+[  96% ] savepack | 正在保存文件：res://scenes/start.tscn.remap
+[  96% ] savepack | 正在保存文件：res://scenes/investigation.tscn.remap
+[  96% ] savepack | 正在保存文件：res://scenes/final_report.tscn.remap
+[  96% ] savepack | 正在保存文件：res://autoload/game_state.gd.remap
+[  96% ] savepack | 正在保存文件：res://main.tscn.remap
+[  96% ] savepack | 正在保存文件：res://tests/playthrough.gd.remap
+[  96% ] savepack | 正在保存文件：res://scripts/view.gd.remap
+[  96% ] savepack | 正在保存文件：res://scripts/start.gd.remap
+[  96% ] savepack | 正在保存文件：res://scripts/main.gd.remap
+[  96% ] savepack | 正在保存文件：res://scripts/investigation.gd.remap
+[  96% ] savepack | 正在保存文件：res://.godot/global_script_class_cache.cfg
+[  96% ] savepack | 正在保存文件：res://.godot/uid_cache.bin
+[  96% ] savepack | 正在保存文件：res://project.binary
+[ DONE ] savepack
+

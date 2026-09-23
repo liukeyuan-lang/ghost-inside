@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "schema_notes": "frequency_text 顺序固定为 [事实层, 情绪层, 期待层]。pos 为舞台区绝对像素坐标；角色 pos 为脚底中心，物件 pos 为视觉中心。",
+  "scene_id": "scene02_archive_room",
+  "tscn_target": "scene02_archive_room",
+  "title": "02 / 成长档案室",
+  "chapter_chip": {
+    "number": "A",
+    "title": "成长档案"
+  },
+  "role": "puzzle_room",
+  "content_rect": [
+    40,
+    122,
+    1200,
+    438
+  ],
+  "camera": {
+    "mode": "fixed"
+  },
+  "spawn": {
+    "pos": [
+      140,
+      500
+    ],
+    "facing": "right"
+  },
+  "walkable": [
+    {
+      "rect": [
+        100,
+        400,
+        1080,
+        140
+      ]
+    }
+  ],
+  "backgrounds": [
+    {
+      "tag": "bg_back",
+      "band": "all",
+      "depth": "back",
+      "asset": "res://assets/scenes/scene02/bg_back.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "bg_mid",
+      "band": "all",
+      "depth": "mid",
+      "asset": "res://assets/scenes/scene02/bg_mid.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "bg_front",
+      "band": "all",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene02/bg_front.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_emotion",
+      "band": "emotion",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene02/overlay_emotion.png",
+      "status": "地图平台产出"
+    },
+    {
+      "tag": "overlay_expectation",
+      "band": "expectation",
+      "depth": "front",
+      "asset": "res://assets/scenes/scene02/overlay_expectation.png",
+      "status": "地图平台产出"
+    }
+  ],
+  "band_style": {
+    "fact": {
+      "tint": [
+        0.66,
+        0.82,
+        0.86,
+        0.82
+      ],
+      "layers_visible": []
+    },
+    "emotion": {
+      "tint": [
+        0.55,
+        0.28,
+        0.3,
+        0.82
+      ],
+      "layers_visible": [
+        "overlay_emotion"
+      ]
+    },
+    "expectation": {
+      "tint": [
+        0.78,
+        0.83,
+        0.88,
+        0.86
+      ],
+      "layers_visible": [
+        "overlay_expectation"
+      ]
+    }
+  },
+  "npcs": [],
+  "objects": [
+    {
+      "id": "O21",
+      "name": "照片 · 父亲参加乐队",
+      "pos": [
+        220,
+        260
+      ],
+      "size": [
+        90,
+        70
+      ],
+      "interact_radius": 90,
+      "inspect_text": "年轻的父亲站在舞台上，吉他背带还很新。",
+      "frequency_text": [
+        "照片里的父亲二十多岁。",
+        "他抱着吉他的姿势很熟练。",
+        "照片边缘浮着标签：不稳定。"
+      ],
+      "hidden": {
+        "band": "fact",
+        "reveal": "乐队邀请背面写着：等家里稳定一点，我再回来。父亲最终没有回去。"
+      },
+      "takeable": true,
+      "slot_group": "timeline",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O22",
+      "name": "照片 · 父亲收起吉他",
+      "pos": [
+        330,
+        260
+      ],
+      "size": [
+        90,
+        70
+      ],
+      "interact_radius": 90,
+      "inspect_text": "吉他被放进箱子，父亲的表情很平静。",
+      "frequency_text": [
+        "箱子上落了灰。",
+        "他收吉他时手指在拨片上停了两秒。",
+        "标签：负责任的选择。"
+      ],
+      "takeable": true,
+      "slot_group": "timeline",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O23",
+      "name": "照片 · 林澈参加游戏比赛",
+      "pos": [
+        440,
+        260
+      ],
+      "size": [
+        90,
+        70
+      ],
+      "interact_radius": 90,
+      "inspect_text": "少年的林澈坐在比赛机位前，屏幕光映在脸上。",
+      "frequency_text": [
+        "参赛记录真实存在。",
+        "他的心跳很快，是兴奋的那种。",
+        "照片上贴着标签：不务正业。"
+      ],
+      "takeable": true,
+      "slot_group": "timeline",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O24",
+      "name": "照片 · 林澈填写医学志愿",
+      "pos": [
+        550,
+        260
+      ],
+      "size": [
+        90,
+        70
+      ],
+      "interact_radius": 90,
+      "inspect_text": "志愿表上林澈的签名很工整。",
+      "frequency_text": [
+        "志愿由林澈本人填写。",
+        "签名时心跳平稳，平静得像填一张表格。",
+        "标签：正确答案。"
+      ],
+      "takeable": true,
+      "slot_group": "timeline",
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O25",
+      "name": "餐桌 · 比赛报名表",
+      "pos": [
+        700,
+        440
+      ],
+      "size": [
+        70,
+        50
+      ],
+      "interact_radius": 80,
+      "inspect_text": "报名表折过一角，日期被摩挲得发白。",
+      "frequency_text": [
+        "报名费是林澈自己攒的。",
+        "折角处有反复摩挲的痕迹。",
+        "表格上盖着「已取消」的印章。"
+      ],
+      "tendency": "exploration"
+    },
+    {
+      "id": "O26",
+      "name": "餐桌 · 数学试卷",
+      "pos": [
+        780,
+        440
+      ],
+      "size": [
+        70,
+        50
+      ],
+      "interact_radius": 80,
+      "inspect_text": "满分试卷，红笔批注写着「继续保持」。",
+      "frequency_text": [
+        "分数真实。",
+        "批注旁有一小块被橡皮擦破的纸面。",
+        "试卷被贴在最显眼的位置。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O27",
+      "name": "餐桌 · 旧吉他拨片",
+      "pos": [
+        860,
+        440
+      ],
+      "size": [
+        40,
+        40
+      ],
+      "interact_radius": 80,
+      "inspect_text": "拨片边缘磨得发亮，绳子还很结实。",
+      "frequency_text": [
+        "拨片属于父亲。",
+        "碰到它时，父亲的心跳加快了。",
+        "拨片被压在宣传册下面，像不想被看见。"
+      ],
+      "takeable": true,
+      "slot_group": "projector",
+      "tendency": "exploration"
+    },
+    {
+      "id": "O28",
+      "name": "餐桌 · 医学院宣传册",
+      "pos": [
+        940,
+        440
+      ],
+      "size": [
+        70,
+        50
+      ],
+      "interact_radius": 80,
+      "inspect_text": "铜版纸很新，和桌上的旧物件形成对比。",
+      "frequency_text": [
+        "宣传册是父亲带回来的。",
+        "父亲翻看它时呼吸很轻，像怕惊动什么。",
+        "封面写着：稳定的人生。"
+      ],
+      "tendency": "responsibility"
+    },
+    {
+      "id": "O29",
+      "name": "投影仪",
+      "pos": [
+        640,
+        300
+      ],
+      "size": [
+        110,
+        80
+      ],
+      "interact_radius": 90,
+      "inspect_text": "家庭投影仪，等待一枚可播放的物件。",
+      "frequency_text": [
+        "设备正常。",
+        "镜头上有指纹。",
+        "机身贴着标签：家庭记忆。"
+      ]
+    }
+  ],
+  "slot_groups": [
+    {
+      "id": "timeline",
+      "type": "sequence",
+      "pos": [
+        330,
+        380
+      ],
+      "slot_size": [
+        80,
+        60
+      ],
+      "slots": 4,
+      "accepts": [
+        "O21",
+        "O22",
+        "O23",
+        "O24"
+      ],
+      "correct_order": [
+        "O21",
+        "O22",
+        "O23",
+        "O24"
+      ],
+      "wrong_feedback": "投影出现矛盾：头发先白后黑、吉他先积灰后崭新。时间顺序不对。",
+      "on_correct": "f21_timeline",
+      "on_correct_story": "时间线成立：父亲放弃乐队在前，林澈的两次选择在后。"
+    },
+    {
+      "id": "projector",
+      "type": "single",
+      "pos": [
+        640,
+        300
+      ],
+      "slot_size": [
+        60,
+        40
+      ],
+      "slots": 1,
+      "accepts": [
+        "O27"
+      ],
+      "requires_flags": [
+        "f21_timeline"
+      ],
+      "on_correct": "f22_pendulum",
+      "on_correct_story": "年轻父亲在乐队邀请与稳定工作之间选择了后者。他没有觉得游戏没有价值，只是不能告诉你：喜欢一定能让你活得更好。他希望你少承担一点风险。"
+    }
+  ],
+  "exits": [
+    {
+      "id": "exit_corridor",
+      "name": "返回走廊",
+      "rect": [
+        50,
+        390,
+        46,
+        150
+      ],
+      "target": "scene01_white_corridor",
+      "condition": "always"
+    }
+  ],
+  "flags_written": [
+    "f21_timeline",
+    "f22_pendulum"
+  ],
+  "completion": {
+    "all_of": [
+      "f21_timeline",
+      "f22_pendulum"
+    ],
+    "writes": [
+      "scene02_complete"
+    ],
+    "on_complete_story": "外部影响已确认。影响不等于完整原因。"
+  },
+  "dossier_update": {
+    "外部影响": "安全、稳定",
+    "强制行为": "未发现"
+  },
+  "evidence_writes": [
+    "F03"
+  ],
+  "map_platform_todo": [
+    "产出三层背景与两张频段覆盖层",
+    "为 O21–O29 绘制 obj sprite 并微调 pos/size",
+    "摆出照片墙（上半区）与餐桌（下半区）的构图",
+    "微调 walkable 与 exit rect"
+  ]
+}

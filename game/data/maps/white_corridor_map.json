@@ -1,0 +1,23 @@
+{
+  "map_id": "white_corridor_case_001",
+  "mode": "scene_mode",
+  "canvas": [1280, 720],
+  "camera_bounds": [0, 0, 1280, 720],
+  "walkable_rect": [100, 340, 1080, 183],
+  "visual_layers": [
+    {"id": "distant_city", "assets": ["city_back.png", "city_buildings.png", "city_front.png"], "collision": false},
+    {"id": "diagnostic_wall", "kind": "engine_geometry", "collision": false},
+    {"id": "office_floor", "asset": "office_carpet.png", "collision": false},
+    {"id": "interactive_props", "kind": "separate_runtime_objects", "collision": false},
+    {"id": "actors", "kind": "character_sprites", "collision": false}
+  ],
+  "objects": [
+    {"id": "O01", "position": [285, 330], "radius": 112, "role": "family_photo_and_growth_archive"},
+    {"id": "O02", "position": [565, 330], "radius": 112, "role": "transcript_and_admission_record"},
+    {"id": "O03", "position": [845, 330], "radius": 112, "role": "applause_and_intent_terminal"},
+    {"id": "memory_exit", "position": [1110, 452], "radius": 112, "role": "memory_dinner_entry"}
+  ],
+  "story_bays": ["growth_archive", "abandoned_studio", "future_validation", "lin_yuan_room", "self_surgery"],
+  "frequency_views": ["fact", "emotion", "expectation"],
+  "player_spawn": [190, 460]
+}
